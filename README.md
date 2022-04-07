@@ -1,1 +1,1 @@
-# ui-tests-selenium
+A repo to practice Python and Selenium
