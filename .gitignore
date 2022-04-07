@@ -1,2 +1,4 @@
 venvSelenium
 pyvenv.cfg
+.pytest_cache
+*/__pycache__
