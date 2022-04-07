@@ -1,6 +1,2 @@
-bin
-include
-lib
-lib64
-share
+venvSelenium
 pyvenv.cfg
