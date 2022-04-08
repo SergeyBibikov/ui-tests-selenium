@@ -1,10 +1,12 @@
 from selenium import webdriver
+import pytest
 
-driver = webdriver.Chrome()
+@pytest.fixture
+def driver():
+    d = webdriver.Chrome()
+    yield d
+    d.close()
 
-def teardown_function():
-    driver.close()
-
-def test_opening():
+def test_opening(driver):
     driver.get('https://www.cian.ru/')
     assert 'Циан - база недвижимости' in driver.title
