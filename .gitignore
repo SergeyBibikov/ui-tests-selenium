@@ -3,4 +3,4 @@ pyvenv.cfg
 .pytest_cache
 .vscode
 output
-*/__pycache__
+**/__pycache__

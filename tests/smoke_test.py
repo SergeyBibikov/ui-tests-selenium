@@ -1,12 +1,12 @@
-from selenium import webdriver
-import pytest
+from selenium.webdriver.chrome.webdriver import WebDriver
+from selenium.webdriver.common.by import By
 
-@pytest.fixture
-def driver():
-    d = webdriver.Chrome()
-    yield d
-    d.close()
+from pageObjects.header import Header
 
-def test_opening(driver):
-    driver.get('https://www.cian.ru/')
+def test_title_content(driver: WebDriver):
     assert 'Циан - база недвижимости' in driver.title
+
+def test_header_links_are_present(driver: WebDriver):
+    header = Header(driver)
+    els = header.root.find_elements(By.CSS_SELECTOR, 'ul > li')
+    assert len(els) == 10
