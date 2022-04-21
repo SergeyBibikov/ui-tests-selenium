@@ -1,9 +1,8 @@
 from selenium.webdriver.chrome.webdriver import WebDriver
-from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.common.by import By
 
 from pageobjects.header import Header
-from pageobjects.kindswitch import KindSwitch
+from pageobjects.searchBlock import SearchBlock
 
 
 def test_title_content(driver: WebDriver):
@@ -38,7 +37,7 @@ def test_operation_kinds(driver: WebDriver):
         'Ипотека',
         'Подбор риелтора',
     ]
-    kind_switch = KindSwitch(driver)
+    kind_switch = SearchBlock(driver)
     links = [el.get_attribute('textContent') for el in kind_switch.root.find_elements(
         By.CSS_SELECTOR, 'ul > li > a')]
     assert links == expected_links_list
