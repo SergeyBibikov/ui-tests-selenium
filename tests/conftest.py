@@ -11,7 +11,6 @@ def driver():
     options.add_experimental_option('excludeSwitches', ['enable-logging'])
 
     d = webdriver.Chrome(options=options)
-    d.implicitly_wait(20)
     d.set_window_size("1920", "1080")
     d.get('https://www.cian.ru/')
     yield d

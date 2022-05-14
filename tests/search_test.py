@@ -5,8 +5,8 @@ from pageobjects.searchBlock import SearchBlock
 
 
 @allure.step
-def checkText(textToFind, text, msg=""):
-    check.is_in(textToFind, text, msg)
+def checkText(textToFind, actualText, msg=""):
+    check.is_in(textToFind, actualText, msg)
 
 
 def test_buy_default_filters(driver: WebDriver):
