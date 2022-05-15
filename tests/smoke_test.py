@@ -2,7 +2,6 @@ from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
 import helpers.elements as els
-from pageobjects.header import Header
 from pageobjects.searchBlock import SearchBlock
 
 
@@ -20,25 +19,6 @@ def test_cookies_notification_hides_on_confirmation(driver: WebDriver):
     el.click()
     els.check_element_is_not_present(
         driver, '[data-name="CookiesNotification"]')
-
-
-def test_header_links(driver: WebDriver):
-    expected_links_list = [
-        'Аренда',
-        'Продажа',
-        'Новостройки',
-        'Дома и участки',
-        'Коммерческая',
-        'Ипотека',
-        'Сервисы',
-        'Ещё',
-        'Ещё',
-        'Ещё'
-    ]
-    header = Header(driver)
-    links = [el.get_attribute('textContent') for el in header.root.find_elements(
-        By.CSS_SELECTOR, 'ul > li > *')]
-    assert links == expected_links_list
 
 
 def test_operation_kinds(driver: WebDriver):

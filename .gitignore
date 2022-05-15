@@ -1,6 +1,5 @@
 venvSelenium
 pyvenv.cfg
 .pytest_cache
-.vscode
 output
 **/__pycache__
