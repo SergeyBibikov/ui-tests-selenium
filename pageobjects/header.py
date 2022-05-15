@@ -8,3 +8,9 @@ class Header():
         self.driver = driver
         self.root = driver.find_element(
             By.CSS_SELECTOR, 'div[data-name="Header"]')
+        self.compare_objects = self.root.find_element(
+            By.CSS_SELECTOR, '[data-name="UtilityCompareContainer"]')
+        self.favourites = self.root.find_element(
+            By.CSS_SELECTOR, '[data-name="UtilityFavoritesContainer"]')
+        self.notifications = self.root.find_element(
+            By.CSS_SELECTOR, '[data-name="UtilityNotificationsContainer"]')
