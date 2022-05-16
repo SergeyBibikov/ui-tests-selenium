@@ -1,3 +1,4 @@
+import platform
 from selenium import webdriver
 import pytest
 import os
@@ -11,7 +12,11 @@ def driver():
     options.add_experimental_option('excludeSwitches', ['enable-logging'])
 
     d = webdriver.Chrome(options=options)
-    d.set_window_size("1920", "1080")
+    pform = platform.system()
+    if pform == 'Linux':
+        d.set_window_size("1280", "720")
+    else:
+        d.set_window_size("1920", "1080")
     d.get('https://www.cian.ru/')
     yield d
     d.close()
