@@ -82,3 +82,23 @@ def test_go_to_compare(driver: WebDriver):
         driver, '//h1[text()="Список сравнения пуст"]', By.XPATH)
     eh.check_element_is_present(
         driver, '//a[span[text()="Искать квартиры"]]', By.XPATH)
+
+
+def test_empty_favourites_card_text(driver: WebDriver):
+    driver.implicitly_wait(5)
+
+    cardLocator = '[data-name="NoFavorites"]'
+    eh.check_element_is_not_present(driver, cardLocator)
+
+    header = Header(driver)
+    header.favourites.click()
+    eh.check_element_is_present(driver, cardLocator)
+
+    card = driver.find_element(By.CSS_SELECTOR, cardLocator)
+    assert 'Добавляйте объявления в избранное' in card.get_attribute(
+        'textContent')
+
+    card.find_element(By.XPATH, '//button[text()="ЖК"]').click()
+    card = driver.find_element(By.CSS_SELECTOR, cardLocator)
+    assert 'Здесь будут любимые жилые комплексы' in card.get_attribute(
+        'textContent')
