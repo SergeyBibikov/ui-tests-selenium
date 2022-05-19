@@ -4,6 +4,9 @@ from selenium.webdriver.remote.webelement import WebElement
 
 
 class Header():
+    favsCard = '//a[@data-name="UtilityFavoritesContainer"]/following-sibling::div'
+    favsCardHeader = favsCard + '//*[@data-name="FavoritesHeader"]'
+    favsCardBody = favsCard + '//*[@data-name="NoFavorites"]'
 
     def __init__(self, driver: WebDriver):
         self.driver = driver
@@ -15,3 +18,9 @@ class Header():
             By.CSS_SELECTOR, '[data-name="UtilityFavoritesContainer"]')
         self.notifications: WebElement = self.root.find_element(
             By.CSS_SELECTOR, '[data-name="UtilityNotificationsContainer"]')
+
+    def close_compare_promo(self):
+        popup = self.driver.find_element(
+            By.XPATH, '//*[@data-name="CompareOnboarding"]')
+        popup.find_element(
+            By.XPATH, '//div[contains(@class, "close")]').click()
