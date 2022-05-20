@@ -1,9 +1,11 @@
-from time import sleep
 from pageobjects.header import Header
 from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.support.ui import WebDriverWait
+
 import helpers.elements as eh
+import helpers.waits as w
 
 
 def test_links_list(driver: WebDriver):
@@ -109,9 +111,18 @@ def test_empty_notifications_card(driver: WebDriver):
 
     eh.check_element_is_not_present(
         driver, Header.notificationsCard, By.XPATH)
+
     header = Header(driver)
+    header.close_compare_promo()
     header.notifications.click()
+
     eh.check_element_is_present(driver, Header.notificationsCard, By.XPATH)
+    w.wait_for_text(driver, 15, By.XPATH,
+                    Header.notificationsCardBody,
+                    'Ещё нет уведомлений')
+    w.wait_for_text(driver, 15, By.XPATH,
+                    Header.notificationsCardBody,
+                    'Здесь будут уведомления об изменении цены и новых объявлениях по вашему поиску')
 
 
 def test_go_to_favs_page_from_favs_card(driver: WebDriver):
