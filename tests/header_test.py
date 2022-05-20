@@ -104,6 +104,16 @@ def test_empty_favourites_card_text(driver: WebDriver):
         'textContent')
 
 
+def test_empty_notifications_card(driver: WebDriver):
+    driver.implicitly_wait(5)
+
+    eh.check_element_is_not_present(
+        driver, Header.notificationsCard, By.XPATH)
+    header = Header(driver)
+    header.notifications.click()
+    eh.check_element_is_present(driver, Header.notificationsCard, By.XPATH)
+
+
 def test_go_to_favs_page_from_favs_card(driver: WebDriver):
     driver.implicitly_wait(5)
 

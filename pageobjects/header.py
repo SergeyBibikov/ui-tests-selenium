@@ -7,6 +7,9 @@ class Header():
     favsCard = '//a[@data-name="UtilityFavoritesContainer"]/following-sibling::div'
     favsCardHeader = favsCard + '//*[@data-name="FavoritesHeader"]'
     favsCardBody = favsCard + '//*[@data-name="NoFavorites"]'
+    notificationsCard = '//a[@data-name="UtilityNotificationsContainer"]/following-sibling::div'
+    notificationsCardHeader = notificationsCard + '/div[1]'
+    notificationsCardBody = notificationsCard + '/div[2]'
 
     def __init__(self, driver: WebDriver):
         self.driver = driver
