@@ -7,9 +7,17 @@ class Header():
     favsCard = '//a[@data-name="UtilityFavoritesContainer"]/following-sibling::div'
     favsCardHeader = favsCard + '//*[@data-name="FavoritesHeader"]'
     favsCardBody = favsCard + '//*[@data-name="NoFavorites"]'
-    notificationsCard = '//a[@data-name="UtilityNotificationsContainer"]/following-sibling::div'
-    notificationsCardHeader = notificationsCard + '/div[1]'
-    notificationsCardBody = notificationsCard + '/div[2]'
+
+    nc_root = '//a[@data-name="UtilityNotificationsContainer"]/following-sibling::div'
+    notificationsCard = {
+        "root": nc_root,
+        "header": nc_root + '/div[1]',
+        "body": nc_root + '/div[2]',
+        "more": {
+            "icon": nc_root + '//button[@data-name="ContextMenu"]',
+            "list": nc_root + '//ul[contains(@class, "--context-menu--")]'
+        }
+    }
 
     def __init__(self, driver: WebDriver):
         self.driver = driver

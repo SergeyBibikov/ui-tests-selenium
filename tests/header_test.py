@@ -107,22 +107,53 @@ def test_empty_favourites_card_text(driver: WebDriver):
 
 
 def test_empty_notifications_card(driver: WebDriver):
+
+    n_card = Header.notificationsCard["root"]
+    n_card_body = Header.notificationsCard["body"]
+
     driver.implicitly_wait(5)
 
     eh.check_element_is_not_present(
-        driver, Header.notificationsCard, By.XPATH)
+        driver, n_card, By.XPATH)
 
     header = Header(driver)
     header.close_compare_promo()
     header.notifications.click()
 
-    eh.check_element_is_present(driver, Header.notificationsCard, By.XPATH)
+    eh.check_element_is_present(driver, n_card, By.XPATH)
     w.wait_for_text(driver, 15, By.XPATH,
-                    Header.notificationsCardBody,
+                    n_card_body,
                     'Ещё нет уведомлений')
     w.wait_for_text(driver, 15, By.XPATH,
-                    Header.notificationsCardBody,
+                    n_card_body,
                     'Здесь будут уведомления об изменении цены и новых объявлениях по вашему поиску')
+
+
+def test_notification_card_more_info_list(driver: WebDriver):
+
+    more_icon = Header.notificationsCard["more"]["icon"]
+    more_list = Header.notificationsCard["more"]["list"]
+
+    driver.implicitly_wait(5)
+
+    header = Header(driver)
+    header.close_compare_promo()
+    header.notifications.click()
+
+    eh.check_element_is_not_present(
+        header.driver, more_list, By.XPATH)
+
+    header.driver.find_element(By.XPATH, more_icon).click()
+
+    eh.check_element_is_present(
+        header.driver, more_list, By.XPATH)
+
+    list_el_text = header.driver.find_element(
+        By.XPATH, more_list).get_attribute('textContent')
+
+    assert 'Отметить как прочитанные' in list_el_text
+    assert 'Удалить все' in list_el_text
+    assert 'Управление подписками' in list_el_text
 
 
 def test_go_to_favs_page_from_favs_card(driver: WebDriver):
