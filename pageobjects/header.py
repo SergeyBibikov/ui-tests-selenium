@@ -29,6 +29,8 @@ class Header():
             By.CSS_SELECTOR, '[data-name="UtilityFavoritesContainer"]')
         self.notifications: WebElement = self.root.find_element(
             By.CSS_SELECTOR, '[data-name="UtilityNotificationsContainer"]')
+        self.place_ad_button: WebElement = self.root.find_element(
+            By.XPATH, '//a[span[text()="+ Разместить объявление"]]')
 
     def close_compare_promo(self):
         popup = self.driver.find_element(

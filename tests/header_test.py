@@ -156,6 +156,15 @@ def test_notification_card_more_info_list(driver: WebDriver):
     assert 'Управление подписками' in list_el_text
 
 
+def test_place_ad_button_lead(driver: WebDriver):
+
+    header = Header(driver)
+    header.close_compare_promo()
+    header.place_ad_button.click()
+
+    assert 'razmestit-obyavlenie' in driver.current_url
+
+
 def test_go_to_favs_page_from_favs_card(driver: WebDriver):
     driver.implicitly_wait(5)
 
