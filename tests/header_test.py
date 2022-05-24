@@ -1,8 +1,9 @@
+import time
+
 from pageobjects.header import Header
 from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
-from selenium.webdriver.support.ui import WebDriverWait
 
 import helpers.elements as eh
 import helpers.waits as w
@@ -186,3 +187,9 @@ def test_sign_in_button_should_trigger_sign_in_window(driver: WebDriver):
     header.close_compare_promo()
     header.sign_in_button.click()
     eh.check_element_is_present(driver, '[data-name="AuthenticationModal"]')
+
+
+def test_layout_change_on_smaller_window_size(driver: WebDriver):
+    eh.check_element_is_not_present(driver, Header.hamburger)
+    driver.set_window_size("800", "600")
+    eh.check_element_is_present(driver, Header.hamburger)

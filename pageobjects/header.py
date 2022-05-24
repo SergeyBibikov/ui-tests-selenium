@@ -4,6 +4,9 @@ from selenium.webdriver.remote.webelement import WebElement
 
 
 class Header():
+
+    hamburger = '[data-name="Hamburger"]'
+
     favsCard = '//a[@data-name="UtilityFavoritesContainer"]/following-sibling::div'
     favsCardHeader = favsCard + '//*[@data-name="FavoritesHeader"]'
     favsCardBody = favsCard + '//*[@data-name="NoFavorites"]'
