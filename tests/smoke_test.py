@@ -2,7 +2,10 @@ from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
 import helpers.elements as eh
-from pageobjects.searchBlock import SearchBlock
+import helpers.waits as w
+from pageobjects.geoswitcher import GeoSwitcher
+from pageobjects.searchblock import SearchBlock
+import time
 
 
 def test_title_content(driver: WebDriver):
@@ -44,3 +47,12 @@ def test_operation_kinds(driver: WebDriver):
     links = [el.get_attribute('textContent') for el in kind_switch.root.find_elements(
         By.CSS_SELECTOR, 'ul > li > a')]
     assert links == expected_links_list
+
+
+def test_location_change(driver: WebDriver):
+    driver.implicitly_wait(10)
+
+    geo_sw = GeoSwitcher(driver)
+    geo_sw.change_location('Казань')
+    w.wait_for_text(driver, 20, By.CSS_SELECTOR,
+                    geo_sw.main_page_button, 'Казань')

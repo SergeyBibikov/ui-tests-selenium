@@ -1,7 +1,7 @@
 import allure
 from selenium.webdriver.chrome.webdriver import WebDriver
 import pytest_check as check
-from pageobjects.searchBlock import SearchBlock
+from pageobjects.searchblock import SearchBlock
 
 
 @allure.step
