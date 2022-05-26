@@ -56,3 +56,13 @@ def test_location_change(driver: WebDriver):
     geo_sw.change_location('Казань')
     w.wait_for_text(driver, 20, By.CSS_SELECTOR,
                     geo_sw.main_page_button, 'Казань')
+
+
+def test_search_with_default_params(driver: WebDriver):
+    driver.implicitly_wait(10)
+    results = '[data-name="SummaryHeader"]'
+
+    driver.find_element(
+        By.CSS_SELECTOR, '[data-mark="FiltersSearchButton"]').click()
+    w.wait_for_text(driver, 20, By.CSS_SELECTOR, results, 'Найдено')
+    w.wait_for_text(driver, 20, By.CSS_SELECTOR, results, 'объявлени')
