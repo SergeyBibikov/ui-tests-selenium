@@ -4,13 +4,16 @@ from selenium.webdriver.common.by import By
 
 
 class SearchBlock():
+
+    offer_type_loc = '[data-mark="FilterOfferType"]'
+
     def __init__(self, driver: WebDriver):
         self.driver = driver
         self.root: WebElement = driver.find_element(
             By.CSS_SELECTOR, 'div[data-name="Hero"]')
-        self.offerType: WebElement = self.root.find_element(
-            By.CSS_SELECTOR, '[data-mark="FilterOfferType"]')
-        self.roomCount: WebElement = self.root.find_element(
+        self.offer_type: WebElement = self.root.find_element(
+            By.CSS_SELECTOR, self.offer_type_loc)
+        self.room_count: WebElement = self.root.find_element(
             By.CSS_SELECTOR, '[data-mark="FilterRoomsCount"]')
         self.price: WebElement = self.root.find_element(
             By.CSS_SELECTOR, '[data-mark="FilterPrice"]')
