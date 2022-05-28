@@ -6,6 +6,7 @@ from selenium.webdriver.common.by import By
 class SearchBlock():
 
     offer_type_loc = '[data-mark="FilterOfferType"]'
+    dropdown_loc = '[class*="dropdown"]'
 
     def __init__(self, driver: WebDriver):
         self.driver = driver
@@ -17,3 +18,9 @@ class SearchBlock():
             By.CSS_SELECTOR, '[data-mark="FilterRoomsCount"]')
         self.price: WebElement = self.root.find_element(
             By.CSS_SELECTOR, '[data-mark="FilterPrice"]')
+
+    def choose_kind(self, kind_name):
+        self.root.find_element(By.LINK_TEXT, kind_name).click()
+
+    def get_filter_dropdown_text(self):
+        return self.offer_type.find_element(By.CSS_SELECTOR, self.dropdown_loc).get_attribute('textContent')
