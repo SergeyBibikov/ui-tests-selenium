@@ -1,6 +1,5 @@
 import time
 
-import allure
 import pytest_check as check
 
 from selenium.webdriver.chrome.webdriver import WebDriver
@@ -8,18 +7,6 @@ from selenium.webdriver.common.by import By
 
 from pageobjects.searchblock import SearchBlock
 import helpers.elements as eh
-
-
-@allure.step
-def checkText(textToFind, actualText, msg=""):
-    check.is_in(textToFind, actualText, msg)
-
-
-def test_buy_default_filters(driver: WebDriver):
-    """ Estate type and room filters must have default values """
-    sb = SearchBlock(driver)
-    checkText("Квартиру в новостройке и вторичке", sb.offer_type.text)
-    checkText("1, 2 комн.", sb.room_count.text)
 
 
 def test_buy_possible_estate_choices(driver: WebDriver):
@@ -62,3 +49,32 @@ def test_rent_possible_estate_choices(driver: WebDriver):
     check.is_in('Часть дома', text)
     check.is_in('Таунхаус', text)
     check.is_in('Гараж', text)
+
+
+def test_24_hour_rent(driver: WebDriver):
+    search = SearchBlock(driver)
+    search.choose_kind('Посуточно')
+    search.offer_type.click()
+
+    text = search.get_filter_dropdown_text()
+
+    check.is_in('Квартира', text)
+    check.is_in('Комната', text)
+    check.is_in('Койко-место', text)
+    check.is_in('Дом, дача', text)
+
+
+def test_estimate_estate_kinds(driver: WebDriver):
+    filterButton = '[data-testId="undefined_control"]'
+    filterDropdown = '[data-testId="undefined_dropdown"]'
+
+    search = SearchBlock(driver)
+    search.choose_kind('Оценить')
+
+    eh.check_element_is_not_present(driver, filterDropdown)
+    driver.find_element(By.CSS_SELECTOR, filterButton).click()
+
+    text = driver.find_element(
+        By.CSS_SELECTOR, filterDropdown).get_attribute('textContent')
+    check.is_in('Квартиру', text)
+    check.is_in('ЖК', text)
