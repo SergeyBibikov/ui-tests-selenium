@@ -7,6 +7,7 @@ class SearchBlock():
 
     offer_type_loc = '[data-mark="FilterOfferType"]'
     dropdown_loc = '[class*="dropdown"]'
+    mortgage_filter = '[data-mark="FilterSingleChoose"]'
 
     def __init__(self, driver: WebDriver):
         self.driver = driver

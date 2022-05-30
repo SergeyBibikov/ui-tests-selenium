@@ -21,5 +21,11 @@
 			"def test_$1(driver: WebDriver):",
 			"\t$2"
 		],
-	}
+	},
+	"driver find element": {
+		"prefix": "fe",
+		"body": [
+			"driver.find_element(By.CSS_SELECTOR, $1)"
+		],
+	},
 }

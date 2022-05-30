@@ -78,3 +78,19 @@ def test_estimate_estate_kinds(driver: WebDriver):
         By.CSS_SELECTOR, filterDropdown).get_attribute('textContent')
     check.is_in('Квартиру', text)
     check.is_in('ЖК', text)
+    
+
+def test_mortgage_estate_kinds(driver: WebDriver):
+
+    search = SearchBlock(driver)
+
+    search.choose_kind('Ипотека')
+    eh.check_element_is_not_present(driver,SearchBlock.dropdown_loc)
+    driver.find_element(By.CSS_SELECTOR, SearchBlock.mortgage_filter).click()
+
+    text = driver.find_element(By.CSS_SELECTOR, SearchBlock.dropdown_loc).get_attribute("textContent")
+
+    check.is_in('Квартира в новостройке', text)
+    check.is_in('Квартира во вторичке', text)
+    check.is_in('Дом или таунхаус', text)
+    check.is_in('Комната или доля', text)
