@@ -78,19 +78,39 @@ def test_estimate_estate_kinds(driver: WebDriver):
         By.CSS_SELECTOR, filterDropdown).get_attribute('textContent')
     check.is_in('Квартиру', text)
     check.is_in('ЖК', text)
-    
+
 
 def test_mortgage_estate_kinds(driver: WebDriver):
 
     search = SearchBlock(driver)
 
     search.choose_kind('Ипотека')
-    eh.check_element_is_not_present(driver,SearchBlock.dropdown_loc)
+    eh.check_element_is_not_present(driver, SearchBlock.dropdown_loc)
     driver.find_element(By.CSS_SELECTOR, SearchBlock.mortgage_filter).click()
 
-    text = driver.find_element(By.CSS_SELECTOR, SearchBlock.dropdown_loc).get_attribute("textContent")
+    text = driver.find_element(
+        By.CSS_SELECTOR, SearchBlock.dropdown_loc).get_attribute("textContent")
 
     check.is_in('Квартира в новостройке', text)
     check.is_in('Квартира во вторичке', text)
     check.is_in('Дом или таунхаус', text)
     check.is_in('Комната или доля', text)
+
+
+def test_estate_agent_search(driver: WebDriver):
+
+    search = SearchBlock(driver)
+
+    search.choose_kind('Подбор риелтора')
+    eh.check_element_is_not_present(
+        driver, SearchBlock.agent_operation_filter_dropdown)
+    driver.find_element(
+        By.CSS_SELECTOR, SearchBlock.agent_operation_filter).click()
+    text = driver.find_element(
+        By.CSS_SELECTOR, SearchBlock.agent_operation_filter_dropdown).get_attribute('textContent')
+
+    check.is_in('Купить', text)
+    check.is_in('Продать', text)
+    check.is_in('Продать, чтобы купить', text)
+    check.is_in('Снять', text)
+    check.is_in('Сдать', text)

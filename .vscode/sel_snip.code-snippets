@@ -28,4 +28,10 @@
 			"driver.find_element(By.CSS_SELECTOR, $1)"
 		],
 	},
+	"get element text": {
+		"prefix": "gt",
+		"body": [
+			"driver.find_element(By.CSS_SELECTOR, $1).getAttribute('textContent')"
+		],
+	},
 }
