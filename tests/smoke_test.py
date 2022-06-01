@@ -66,3 +66,13 @@ def test_search_with_default_params(driver: WebDriver):
         By.CSS_SELECTOR, '[data-mark="FiltersSearchButton"]').click()
     w.wait_for_text(driver, 20, By.CSS_SELECTOR, results, 'Найдено')
     w.wait_for_text(driver, 20, By.CSS_SELECTOR, results, 'объявлени')
+
+
+def test_map_opening(driver: WebDriver):
+    driver.implicitly_wait(10)
+
+    search = SearchBlock(driver)
+    search.show_on_map()
+
+    eh.check_element_is_not_present(driver, SearchBlock.root_loc)
+    eh.check_element_is_present(driver, '[data-name="Map"]')
