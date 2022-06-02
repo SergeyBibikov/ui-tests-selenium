@@ -7,6 +7,8 @@ from pageobjects.geoswitcher import GeoSwitcher
 from pageobjects.searchblock import SearchBlock
 import time
 
+import pytest_check as check
+
 
 def test_title_content(driver: WebDriver):
     assert 'Циан - база недвижимости' in driver.title
@@ -76,3 +78,13 @@ def test_map_opening(driver: WebDriver):
 
     eh.check_element_is_not_present(driver, SearchBlock.root_loc)
     eh.check_element_is_present(driver, '[data-name="Map"]')
+
+
+def test_specialist_lists_content(driver: WebDriver):
+    spec_list = driver.find_elements(
+        By.CSS_SELECTOR, '[data-name="SpecialistList"]')
+    assert len(spec_list) == 3
+
+    check.is_in('Риелторы', spec_list[0].get_attribute('textContent'))
+    check.is_in('Агентства', spec_list[1].get_attribute('textContent'))
+    check.is_in('Застройщики', spec_list[2].get_attribute('textContent'))
