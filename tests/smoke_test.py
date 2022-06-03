@@ -3,6 +3,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
 import helpers.elements as eh
 import helpers.waits as w
+import pytest_check as check
 from pageobjects.geoswitcher import GeoSwitcher
 from pageobjects.searchblock import SearchBlock
 import time
@@ -12,6 +13,16 @@ import pytest_check as check
 
 def test_title_content(driver: WebDriver):
     assert 'Циан - база недвижимости' in driver.title
+
+
+def test_main_page_sections(driver: WebDriver):
+    eh.check_element_is_present(
+        driver, '//*[text()="Рекомендованные ЖК"]', By.XPATH)
+    eh.check_element_is_present(
+        driver, '//*[text()="Полезные ссылки"]', By.XPATH)
+    eh.check_element_is_present(
+        driver, '//*[text()="Популярные объявления"]', By.XPATH)
+    eh.check_element_is_present(driver, '//*[text()="Журнал"]', By.XPATH)
 
 
 def test_compare_promo_popup(driver: WebDriver):
