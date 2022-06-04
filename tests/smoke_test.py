@@ -25,6 +25,25 @@ def test_main_page_sections(driver: WebDriver):
     eh.check_element_is_present(driver, '//*[text()="Журнал"]', By.XPATH)
 
 
+def test_popular_ads_sell_tabs(driver: WebDriver):
+    pop_text = driver.find_elements(
+        By.CSS_SELECTOR, '[data-name="PopularHeader"]')[0].get_attribute('textContent')
+
+    check.is_in('Жилая', pop_text)
+    check.is_in('Загородная', pop_text)
+    check.is_in('Коммерческая', pop_text)
+
+
+def test_popular_ads_rent_tabs(driver: WebDriver):
+    pop_text = driver.find_elements(
+        By.CSS_SELECTOR, '[data-name="PopularHeader"]')[1].get_attribute('textContent')
+
+    check.is_in('Жилая', pop_text)
+    check.is_in('Загородная', pop_text)
+    check.is_in('Коммерческая', pop_text)
+    check.is_in('Посуточно', pop_text)
+
+
 def test_compare_promo_popup(driver: WebDriver):
     loc = '[data-name="CompareOnboarding"]'
     eh.check_element_is_present(driver, loc)
