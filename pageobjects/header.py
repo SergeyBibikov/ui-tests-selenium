@@ -22,6 +22,8 @@ class Header():
         }
     }
 
+    main_dropdown = '[data-name="DropdownMainMenu"]'
+
     def __init__(self, driver: WebDriver):
         self.driver = driver
         self.root: WebElement = driver.find_element(

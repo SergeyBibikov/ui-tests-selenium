@@ -1,12 +1,14 @@
-import time
-
 from pageobjects.header import Header
 from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.common.action_chains import ActionChains
 
 import helpers.elements as eh
 import helpers.waits as w
+import helpers.actions as a
+
+import pytest_check as check
 
 
 def test_links_list(driver: WebDriver):
@@ -46,7 +48,7 @@ def test_popup_compare_objects(driver: WebDriver):
     )
 
     header = Header(driver)
-    ActionChains(driver).move_to_element(header.compare_objects).perform()
+    a.hover(driver, header.compare_objects)
 
     eh.check_element_is_present(
         driver, '//div[@data-popper-placement][div[text()="Сравнение объектов"]]', By.XPATH)
@@ -193,3 +195,26 @@ def test_layout_change_on_smaller_window_size(driver: WebDriver):
     eh.check_element_is_not_present(driver, Header.hamburger)
     driver.set_window_size("800", "600")
     eh.check_element_is_present(driver, Header.hamburger)
+
+
+def test_rent_action_kinds_on_hover(driver: WebDriver):
+    driver.implicitly_wait(5)
+
+    header = Header(driver)
+
+    eh.check_element_is_not_present(driver, header.main_dropdown)
+
+    rent_link: WebElement = header.root.find_element(By.LINK_TEXT, 'Аренда')
+    a.hover(driver, rent_link)
+
+    drop_text = driver.find_element(
+        By.CSS_SELECTOR, header.main_dropdown).get_attribute('textContent')
+
+    check.is_in('Длительная аренда', drop_text)
+    check.is_in('Квартиры', drop_text)
+    check.is_in('Комнаты', drop_text)
+    check.is_in('Дома и коттеджи', drop_text)
+    check.is_in('Посуточная аренда', drop_text)
+    check.is_in('Циан.Журнал', drop_text)
+    check.is_in('Как снять или сдать квартиру', drop_text)
+    check.is_in('Как купить или продать квартиру на вторичном рынке', drop_text)
