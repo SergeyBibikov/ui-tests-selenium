@@ -218,3 +218,23 @@ def test_rent_action_kinds_on_hover(driver: WebDriver):
     check.is_in('Циан.Журнал', drop_text)
     check.is_in('Как снять или сдать квартиру', drop_text)
     check.is_in('Как купить или продать квартиру на вторичном рынке', drop_text)
+
+def test_sell_dropdown_content(driver: WebDriver):
+    driver.implicitly_wait(5)
+
+    header = Header(driver)
+
+    eh.check_element_is_not_present(driver, header.main_dropdown)
+
+    rent_link: WebElement = header.root.find_element(By.LINK_TEXT, 'Продажа')
+    a.hover(driver, rent_link)
+
+    drop_text = driver.find_element(
+        By.CSS_SELECTOR, header.main_dropdown).get_attribute('textContent')
+
+    check.is_in('Квартиры', drop_text)
+    check.is_in('Квартиры в новостройках', drop_text)
+    check.is_in('Квартиры во вторичке', drop_text)
+    check.is_in('Комнаты и доли', drop_text)
+    check.is_in('Дома и коттеджи', drop_text)
+    check.is_in('Участки', drop_text)
