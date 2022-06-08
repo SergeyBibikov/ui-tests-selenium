@@ -196,6 +196,7 @@ def test_layout_change_on_smaller_window_size(driver: WebDriver):
     driver.set_window_size("800", "600")
     eh.check_element_is_present(driver, Header.hamburger)
 
+""" TESTS OF DROPDOWN CONTENT AFTER HOVER ON A HEADER LINK """
 
 def test_rent_action_kinds_on_hover(driver: WebDriver):
     driver.implicitly_wait(5)
