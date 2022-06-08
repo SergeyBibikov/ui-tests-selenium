@@ -196,7 +196,9 @@ def test_layout_change_on_smaller_window_size(driver: WebDriver):
     driver.set_window_size("800", "600")
     eh.check_element_is_present(driver, Header.hamburger)
 
+
 """ TESTS OF DROPDOWN CONTENT AFTER HOVER ON A HEADER LINK """
+
 
 def test_rent_action_kinds_on_hover(driver: WebDriver):
     driver.implicitly_wait(5)
@@ -241,6 +243,7 @@ def test_sell_dropdown_content(driver: WebDriver):
     check.is_in('Дома и коттеджи', drop_text)
     check.is_in('Участки', drop_text)
 
+
 def test_new_houses_dropdown_content(driver: WebDriver):
     driver.implicitly_wait(5)
 
@@ -248,7 +251,8 @@ def test_new_houses_dropdown_content(driver: WebDriver):
 
     eh.check_element_is_not_present(driver, header.main_dropdown)
 
-    rent_link: WebElement = header.root.find_element(By.LINK_TEXT, 'Новостройки')
+    rent_link: WebElement = header.root.find_element(
+        By.LINK_TEXT, 'Новостройки')
     a.hover(driver, rent_link)
 
     drop_text = driver.find_element(
@@ -259,3 +263,24 @@ def test_new_houses_dropdown_content(driver: WebDriver):
     check.is_in('Каталог коттеджных поселков', drop_text)
     check.is_in('Каталог акций и скидок', drop_text)
     check.is_in('Подобрать новостройку', drop_text)
+
+
+def test_houses_and_land_dropdown_content(driver: WebDriver):
+    driver.implicitly_wait(5)
+
+    header = Header(driver)
+
+    eh.check_element_is_not_present(driver, header.main_dropdown)
+
+    rent_link: WebElement = header.root.find_element(
+        By.LINK_TEXT, 'Дома и участки')
+    a.hover(driver, rent_link)
+
+    drop_text = driver.find_element(
+        By.CSS_SELECTOR, header.main_dropdown).get_attribute('textContent')
+
+    check.is_in('Продажа домов и дач', drop_text)
+    check.is_in('Продажа участков', drop_text)
+    check.is_in('Продажа таунхаусов', drop_text)
+    check.is_in('Аренда домов', drop_text)
+    check.is_in('Коттеджные посёлки', drop_text)
