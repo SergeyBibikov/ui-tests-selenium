@@ -284,3 +284,24 @@ def test_houses_and_land_dropdown_content(driver: WebDriver):
     check.is_in('Продажа таунхаусов', drop_text)
     check.is_in('Аренда домов', drop_text)
     check.is_in('Коттеджные посёлки', drop_text)
+
+def test_mortgage_dropdown_content(driver: WebDriver):
+    driver.implicitly_wait(5)
+
+    header = Header(driver)
+
+    eh.check_element_is_not_present(driver, header.main_dropdown)
+
+    rent_link: WebElement = header.root.find_element(
+        By.LINK_TEXT, 'Ипотека')
+    a.hover(driver, rent_link)
+
+    drop_text = driver.find_element(
+        By.CSS_SELECTOR, header.main_dropdown).get_attribute('textContent')
+
+    check.is_in('Персональные ипотечные предложения', drop_text)
+    check.is_in('Господдержка', drop_text)
+    check.is_in('Ипотечный калькулятор', drop_text)
+    check.is_in('Ипотека на загородную недвижимость', drop_text)
+    check.is_in('Потребительский кредит', drop_text)
+
