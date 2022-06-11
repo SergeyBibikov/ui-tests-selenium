@@ -305,3 +305,28 @@ def test_mortgage_dropdown_content(driver: WebDriver):
     check.is_in('Ипотека на загородную недвижимость', drop_text)
     check.is_in('Потребительский кредит', drop_text)
 
+
+def test_commercial_estate(driver: WebDriver):
+    driver.implicitly_wait(5) 
+
+    header = Header(driver) 
+
+    eh.check_element_is_not_present(driver, header.main_dropdown) 
+
+    rent_link: WebElement = header.root.find_element(
+        By.LINK_TEXT, 'Коммерческая')
+    a.hover(driver, rent_link) 
+
+    drop_text = driver.find_element(
+        By.CSS_SELECTOR, header.main_dropdown).get_attribute('textContent') 
+
+    check.is_in('Аренда', drop_text)
+    check.is_in('Аренда офиса', drop_text)
+    check.is_in('Аренда коворкинга', drop_text)
+    check.is_in('Аренда торговой площади', drop_text)
+    check.is_in('Аренда складского помещения', drop_text)
+    check.is_in('Продажа', drop_text)
+    check.is_in('Продажа офиса', drop_text)
+    check.is_in('Продажа торговой площади', drop_text)
+    check.is_in('Продажа складского помещения', drop_text)
+    check.is_in('Продажа готового бизнеса', drop_text)
