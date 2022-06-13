@@ -11,8 +11,11 @@ import time
 import pytest_check as check
 
 """ 
-   MAIN PAGE BASIC FUNCTIONALITY AND CONTENT TESTS
+
+MAIN PAGE BASIC FUNCTIONALITY AND CONTENT TESTS
+
 """
+
 
 def test_title_content(driver: WebDriver):
     assert 'Циан - база недвижимости' in driver.title
@@ -122,11 +125,27 @@ def test_specialist_lists_content(driver: WebDriver):
     check.is_in('Агентства', spec_list[1].get_attribute('textContent'))
     check.is_in('Застройщики', spec_list[2].get_attribute('textContent'))
 
+
 def test_footer_sections(driver: WebDriver):
     footer_loc = '//main/following-sibling::div[1]'
-    text = driver.find_element(By.XPATH, footer_loc).get_attribute('textContent')
+    text = driver.find_element(
+        By.XPATH, footer_loc).get_attribute('textContent')
 
-    check.is_in('Квартиры у метро', text);
-    check.is_in('Квартиры в районе', text);
-    check.is_in('Недвижимость в Подмосковье', text);
-    check.is_in('Объявления по всей России', text);
+    check.is_in('Квартиры у метро', text)
+    check.is_in('Квартиры в районе', text)
+    check.is_in('Недвижимость в Подмосковье', text)
+    check.is_in('Объявления по всей России', text)
+
+
+def test_feedback_popup(driver: WebDriver):
+
+    driver.implicitly_wait(10)
+
+    button_loc = '//*[@alt="UX Feedback"]/..'
+    form_loc = '//h2[text()="Насколько легко пользоваться нашим сайтом?"]/following-sibling::ul'
+
+    eh.check_element_is_not_present(driver, form_loc, By.XPATH)
+
+    driver.find_element(By.XPATH, button_loc).click()
+
+    eh.check_element_is_present(driver, form_loc, By.XPATH)
