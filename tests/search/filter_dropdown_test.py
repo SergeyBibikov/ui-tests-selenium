@@ -7,6 +7,7 @@ from selenium.webdriver.common.by import By
 
 from pageobjects.searchblock import SearchBlock
 import helpers.elements as eh
+import helpers.waits
 
 
 def test_buy_possible_estate_choices(driver: WebDriver):
@@ -18,7 +19,7 @@ def test_buy_possible_estate_choices(driver: WebDriver):
 
     search.offer_type.click()
 
-    text = search.get_filter_dropdown_text()
+    text = search.get_kind_filter_dropdown_text()
 
     check.is_in('Жилая', text)
     check.is_in('Коммерческая', text)
@@ -38,7 +39,7 @@ def test_rent_possible_estate_choices(driver: WebDriver):
     search.choose_kind('Снять')
     search.offer_type.click()
 
-    text = search.get_filter_dropdown_text()
+    text = search.get_kind_filter_dropdown_text()
 
     check.is_in('Жилая', text)
     check.is_in('Коммерческая', text)
@@ -56,7 +57,7 @@ def test_24_hour_rent(driver: WebDriver):
     search.choose_kind('Посуточно')
     search.offer_type.click()
 
-    text = search.get_filter_dropdown_text()
+    text = search.get_kind_filter_dropdown_text()
 
     check.is_in('Квартира', text)
     check.is_in('Комната', text)
@@ -114,3 +115,26 @@ def test_estate_agent_search(driver: WebDriver):
     check.is_in('Продать, чтобы купить', text)
     check.is_in('Снять', text)
     check.is_in('Сдать', text)
+
+
+def test_room_count_filter(driver: WebDriver):
+    driver.implicitly_wait(10)
+
+    search = SearchBlock(driver)
+
+    eh.check_element_is_not_present(driver, search.dropdown_loc)
+
+    search.room_count.click()
+
+    eh.check_element_is_present(driver, search.dropdown_loc)
+
+    text = driver.find_element(
+        By.CSS_SELECTOR, search.dropdown_loc).get_attribute('textContent')
+    check.is_in('1', text)
+    check.is_in('2', text)
+    check.is_in('3', text)
+    check.is_in('4', text)
+    check.is_in('5', text)
+    check.is_in('6+', text)
+    check.is_in('Студия', text)
+    check.is_in('Свободная планировка', text)
