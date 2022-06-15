@@ -7,7 +7,6 @@ from selenium.webdriver.common.by import By
 
 from pageobjects.searchblock import SearchBlock
 import helpers.elements as eh
-import helpers.waits
 
 
 def test_buy_possible_estate_choices(driver: WebDriver):
@@ -138,3 +137,18 @@ def test_room_count_filter(driver: WebDriver):
     check.is_in('6+', text)
     check.is_in('Студия', text)
     check.is_in('Свободная планировка', text)
+
+
+def test_price_input_fields_presence(driver: WebDriver):
+    driver.implicitly_wait(10)
+
+    search = SearchBlock(driver)
+
+    eh.check_element_is_not_present(driver, search.dropdown_loc)
+
+    search.price.click()
+
+    dropdown = driver.find_element(By.CSS_SELECTOR, search.dropdown_loc)
+
+    eh.check_element_is_present(dropdown, 'input[placeholder="от"]')
+    eh.check_element_is_present(dropdown, 'input[placeholder="до"]')

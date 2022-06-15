@@ -1,9 +1,10 @@
 from selenium.webdriver.common.by import By
+import pytest_check as check
 
 
 def check_element_is_present(driver, locator, by=By.CSS_SELECTOR):
     elements = driver.find_elements(by, locator)
-    assert len(elements) == 1
+    check.equal(len(elements), 1)
 
 
 def check_element_is_not_present(driverOrElement, locator, by=By.CSS_SELECTOR):

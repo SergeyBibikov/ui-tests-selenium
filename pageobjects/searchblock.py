@@ -12,6 +12,7 @@ class SearchBlock():
     agent_operation_filter_dropdown = '[data-testid="dealType_filter_dropdown"]'
     show_on_map_loc = '[data-mark="FiltersSearchOnMapButton"]'
     room_count_loc = '[data-mark="FilterRoomsCount"]'
+    price_filter_loc = '[data-mark="FilterPrice"]'
 
     def __init__(self, driver: WebDriver):
         self.driver = driver
@@ -22,7 +23,7 @@ class SearchBlock():
         self.room_count: WebElement = self.root.find_element(
             By.CSS_SELECTOR, self.room_count_loc)
         self.price: WebElement = self.root.find_element(
-            By.CSS_SELECTOR, '[data-mark="FilterPrice"]')
+            By.CSS_SELECTOR, self.price_filter_loc)
 
     def choose_kind(self, kind_name):
         self.root.find_element(By.LINK_TEXT, kind_name).click()
