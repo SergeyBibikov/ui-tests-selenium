@@ -14,6 +14,10 @@ class SearchBlock():
     room_count_loc = '[data-mark="FilterRoomsCount"]'
     price_filter_loc = '[data-mark="FilterPrice"]'
 
+    filters_general = '[data-name="Filters"]'
+    filters_mortgage_and_agent = '//div[contains(@class,"filters")]'
+    single_filter_loc = '//div[contains(@class,"filter") and not(contains(@class, "container"))]'
+
     def __init__(self, driver: WebDriver):
         self.driver = driver
         self.root: WebElement = driver.find_element(

@@ -304,7 +304,6 @@ def test_mortgage_dropdown_content(driver: WebDriver):
     check.is_in('Господдержка', drop_text)
     check.is_in('Ипотечный калькулятор', drop_text)
     check.is_in('Ипотека на загородную недвижимость', drop_text)
-    check.is_in('Потребительский кредит', drop_text)
 
 
 def test_commercial_estate(driver: WebDriver):
