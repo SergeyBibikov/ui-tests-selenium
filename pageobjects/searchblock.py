@@ -7,7 +7,6 @@ class SearchBlock():
     root_loc = 'div[data-name="Hero"]'
     offer_type_loc = '[data-mark="FilterOfferType"]'
     dropdown_loc = '[class*="dropdown"]'
-    mortgage_filter = '[data-mark="FilterSingleChoose"]'
     agent_operation_filter = '[data-testid="dealType_filter_control"]'
     agent_operation_filter_dropdown = '[data-testid="dealType_filter_dropdown"]'
     show_on_map_loc = '[data-mark="FiltersSearchOnMapButton"]'
@@ -17,6 +16,14 @@ class SearchBlock():
     filters_general = '[data-name="Filters"]'
     filters_mortgage_and_agent = '//div[contains(@class,"filters")]'
     single_filter_loc = '//div[contains(@class,"filter") and not(contains(@class, "container"))]'
+
+    mortgage_filters = {
+        "estate_kind": '//div[@data-mark="FilterSingleChoose"][1]',
+        "estate_price": '//div[@data-name="FilterAmountInput"][1]',
+        "first_payment_sum": '//div[@data-name="FilterAmountInput"][2]',
+        "period": '//div[@data-mark="FilterSingleChoose"][2]',
+        "region": '//div[@data-mark="FilterRegion"]'
+    }
 
     def __init__(self, driver: WebDriver):
         self.driver = driver

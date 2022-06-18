@@ -86,7 +86,7 @@ def test_mortgage_estate_kinds(driver: WebDriver):
 
     search.choose_kind('Ипотека')
     eh.check_element_is_not_present(driver, SearchBlock.dropdown_loc)
-    driver.find_element(By.CSS_SELECTOR, SearchBlock.mortgage_filter).click()
+    driver.find_element(By.XPATH, SearchBlock.mortgage_filters["estate_kind"]).click()
 
     text = driver.find_element(
         By.CSS_SELECTOR, SearchBlock.dropdown_loc).get_attribute("textContent")
