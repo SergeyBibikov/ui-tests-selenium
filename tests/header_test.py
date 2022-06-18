@@ -31,7 +31,6 @@ def test_links_list(driver: WebDriver):
 
 
 def test_place_ad_button_is_present(driver: WebDriver):
-    """ Checks if a user can place an ad    """
     header = Header(driver)
     eh.check_element_is_present(
         header.root, '//a[span[text()="+ Разместить объявление"]]', By.XPATH)

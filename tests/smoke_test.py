@@ -10,11 +10,7 @@ import time
 
 import pytest_check as check
 
-""" 
-
-MAIN PAGE BASIC FUNCTIONALITY AND CONTENT TESTS
-
-"""
+""" MAIN PAGE BASIC FUNCTIONALITY AND CONTENT TESTS """
 
 
 def test_title_content(driver: WebDriver):
