@@ -14,7 +14,7 @@ def driver():
     d = webdriver.Chrome(options=options)
     pform = platform.system()
     if pform == 'Linux':
-        d.set_window_size("1280", "720")
+        d.set_window_size("1366", "768")
     else:
         d.set_window_size("1920", "1080")
     d.get('https://www.cian.ru/')

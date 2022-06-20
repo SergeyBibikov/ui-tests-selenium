@@ -329,4 +329,4 @@ def test_commercial_estate(driver: WebDriver):
     check.is_in('Продажа офиса', drop_text)
     check.is_in('Продажа торговой площади', drop_text)
     check.is_in('Продажа складского помещения', drop_text)
-    check.is_in('Продажа готового бизнеса', drop_text)
+    check.is_in('Продажа  бизнеса', drop_text)
