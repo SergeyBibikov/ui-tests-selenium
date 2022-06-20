@@ -49,3 +49,39 @@ def test_estate_agent_selection_should_have_3_filters(driver: WebDriver):
     _filters = search.filters_mortgage_and_agent + search.single_filter_loc
     filters = driver.find_elements(By.XPATH, _filters)
     check.equal(len(filters), 3)
+
+def test_buy_should_have_4_filters(driver: WebDriver):
+    driver.implicitly_wait(10)
+
+    search = SearchBlock(driver)
+
+    search.choose_kind('Купить')
+
+    eh.check_element_is_present(driver, search.offer_type_loc)
+    eh.check_element_is_present(driver, search.room_count_loc)
+    eh.check_element_is_present(driver, search.price_filter_loc)
+    eh.check_element_is_present(driver, search.location_filter_loc)
+
+def test_rent_should_have_4_filters(driver: WebDriver):
+    driver.implicitly_wait(10)
+
+    search = SearchBlock(driver)
+
+    search.choose_kind('Снять')
+
+    eh.check_element_is_present(driver, search.offer_type_loc)
+    eh.check_element_is_present(driver, search.room_count_loc)
+    eh.check_element_is_present(driver, search.price_filter_loc)
+    eh.check_element_is_present(driver, search.location_filter_loc)
+
+def test_24_hour_rent_should_have_4_filters(driver: WebDriver):
+    driver.implicitly_wait(10)
+
+    search = SearchBlock(driver)
+
+    search.choose_kind('Посуточно')
+
+    eh.check_element_is_present(driver, search.offer_type_loc)
+    eh.check_element_is_present(driver, search.room_count_loc)
+    eh.check_element_is_present(driver, search.price_filter_loc)
+    eh.check_element_is_present(driver, search.location_filter_loc)

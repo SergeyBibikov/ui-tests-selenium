@@ -12,6 +12,7 @@ class SearchBlock():
     show_on_map_loc = '[data-mark="FiltersSearchOnMapButton"]'
     room_count_loc = '[data-mark="FilterRoomsCount"]'
     price_filter_loc = '[data-mark="FilterPrice"]'
+    location_filter_loc = '[data-mark="FilterGeo"]'
 
     filters_general = '[data-name="Filters"]'
     filters_mortgage_and_agent = '//div[contains(@class,"filters")]'
