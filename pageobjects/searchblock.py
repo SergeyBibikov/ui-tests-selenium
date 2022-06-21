@@ -14,6 +14,8 @@ class SearchBlock():
     price_filter_loc = '[data-mark="FilterPrice"]'
     location_filter_loc = '[data-mark="FilterGeo"]'
 
+    suggestion_popup_loc = '[data-name="SuggestionPopup"]'
+
     filters_general = '[data-name="Filters"]'
     filters_mortgage_and_agent = '//div[contains(@class,"filters")]'
     single_filter_loc = '//div[contains(@class,"filter") and not(contains(@class, "container"))]'
@@ -36,6 +38,8 @@ class SearchBlock():
             By.CSS_SELECTOR, self.room_count_loc)
         self.price: WebElement = self.root.find_element(
             By.CSS_SELECTOR, self.price_filter_loc)
+        self.location: WebElement = self.root.find_element(
+            By.CSS_SELECTOR, self.location_filter_loc)
 
     def choose_kind(self, kind_name):
         self.root.find_element(By.LINK_TEXT, kind_name).click()
@@ -46,3 +50,6 @@ class SearchBlock():
     def show_on_map(self):
         self.driver.find_element(
             By.CSS_SELECTOR, self.show_on_map_loc).click()
+    
+    def enter_location(self, location):
+        self.location.find_element(By.CSS_SELECTOR, 'input').send_keys(location)
