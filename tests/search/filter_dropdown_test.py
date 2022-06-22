@@ -9,6 +9,8 @@ from pageobjects.searchblock import SearchBlock
 import helpers.elements as eh
 
 
+""" TESTS OF VARIOUS DROPDOWNS IN THE SEARCH FILTERS BLOCK """
+
 def test_buy_possible_estate_choices(driver: WebDriver):
 
     search = SearchBlock(driver)

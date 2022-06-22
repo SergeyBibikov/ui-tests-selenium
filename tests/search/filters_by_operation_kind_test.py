@@ -9,6 +9,7 @@ from selenium.webdriver.common.by import By
 from pageobjects.searchblock import SearchBlock
 import helpers.elements as eh
 
+""" TESTS OF SEARCH FILTERS IN VARIOUS SEARCH TABS"""
 
 def test_estimate_should_have_4_filters(driver: WebDriver):
 
