@@ -8,6 +8,7 @@ from selenium.webdriver.common.by import By
 
 from pageobjects.searchblock import SearchBlock
 import helpers.elements as eh
+import constants
 
 """ TESTS OF SEARCH FILTERS IN VARIOUS SEARCH TABS"""
 
@@ -86,3 +87,10 @@ def test_24_hour_rent_should_have_4_filters(driver: WebDriver):
     eh.check_element_is_present(driver, search.room_count_loc)
     eh.check_element_is_present(driver, search.price_filter_loc)
     eh.check_element_is_present(driver, search.location_filter_loc)
+
+def test_new_houses_search_shoulld_have_4_filters(driver: WebDriver):
+    driver.get(constants.urls["NEW_HOUSES"])
+
+    filters = driver.find_elements(By.XPATH, '//div[@data-name="SearchFilters"]//div[contains(@data-name, "Filter")]')
+    
+    assert len(filters) == 4
