@@ -94,3 +94,10 @@ def test_new_houses_search_shoulld_have_4_filters(driver: WebDriver):
     filters = driver.find_elements(By.XPATH, '//div[@data-name="SearchFilters"]//div[contains(@data-name, "Filter")]')
     
     assert len(filters) == 4
+
+def test_country_property_search_shoulld_have_3_filters(driver: WebDriver):
+    driver.get(constants.urls["COUNTRY_PROPERTY"])
+
+    filters = driver.find_elements(By.XPATH, '//div[@data-name="Filters"]//div[starts-with(@data-mark, "Filter")]')
+    
+    assert len(filters) == 3
