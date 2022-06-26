@@ -2,21 +2,31 @@ import platform
 from selenium import webdriver
 import pytest
 import os
+import constants
 
-
-@pytest.fixture
-def driver():
+def get_driver():
     options = webdriver.ChromeOptions()
     if os.environ.get("HEADLESS") == "1":
         options.add_argument("--headless")
     options.add_experimental_option('excludeSwitches', ['enable-logging'])
-
     d = webdriver.Chrome(options=options)
     pform = platform.system()
     if pform == 'Linux':
         d.set_window_size("1366", "768")
     else:
         d.set_window_size("1920", "1080")
-    d.get('https://www.cian.ru/')
+    return d
+
+@pytest.fixture
+def driver():
+    d = get_driver()
+    d.get(constants.urls["MAIN_PAGE"])
+    yield d
+    d.close()
+
+@pytest.fixture
+def driver_rent():
+    d = get_driver()
+    d.get(constants.urls["ROOM_RENT"])
     yield d
     d.close()
