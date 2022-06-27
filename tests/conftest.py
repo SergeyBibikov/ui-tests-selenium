@@ -30,3 +30,9 @@ def driver_rent():
     d.get(constants.urls["ROOM_RENT"])
     yield d
     d.close()
+
+@pytest.fixture
+def driver_no_link():
+    d = get_driver()
+    yield d
+    d.close()
