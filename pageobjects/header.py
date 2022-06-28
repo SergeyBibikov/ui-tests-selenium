@@ -40,6 +40,7 @@ class Header():
             By.XPATH, '//a[span[text()="Войти"]]')
 
     def close_compare_promo(self):
+        """ If not closed, the popup will intercept click events+"""
         popup = self.driver.find_element(
             By.XPATH, '//*[@data-name="CompareOnboarding"]')
         popup.find_element(
