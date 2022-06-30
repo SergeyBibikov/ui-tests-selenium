@@ -17,10 +17,10 @@ class SearchBlock():
     suggestion_popup_loc = '[data-name="SuggestionPopup"]'
 
     filters_general = '[data-name="Filters"]'
-    filters_mortgage_and_agent = '//div[contains(@class,"filters")]'
+    filters_MORTGAGE_MAIN_and_agent = '//div[contains(@class,"filters")]'
     single_filter_loc = '//div[contains(@class,"filter") and not(contains(@class, "container"))]'
 
-    mortgage_filters = {
+    MORTGAGE_MAIN_filters = {
         "estate_kind": '//div[@data-mark="FilterSingleChoose"][1]',
         "estate_price": '//div[@data-name="FilterAmountInput"][1]',
         "first_payment_sum": '//div[@data-name="FilterAmountInput"][2]',

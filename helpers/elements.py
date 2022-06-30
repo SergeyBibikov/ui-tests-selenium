@@ -4,7 +4,7 @@ import pytest_check as check
 
 def check_element_is_present(driver, locator, by=By.CSS_SELECTOR):
     elements = driver.find_elements(by, locator)
-    check.equal(len(elements), 1)
+    check.greater(len(elements), 0)
 
 
 def check_element_is_not_present(driverOrElement, locator, by=By.CSS_SELECTOR):

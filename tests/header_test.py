@@ -287,7 +287,7 @@ def test_houses_and_land_dropdown_content(driver: WebDriver):
     check.is_in('Коттеджные посёлки', drop_text)
 
 
-def test_mortgage_dropdown_content(driver: WebDriver):
+def test_MORTGAGE_MAIN_dropdown_content(driver: WebDriver):
     driver.implicitly_wait(5)
 
     header = Header(driver)
