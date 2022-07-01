@@ -33,3 +33,14 @@ def test_mortgage_with_state_support(driver_no_link: WebDriver):
     w.wait_for_text(d, 30, By.CSS_SELECTOR, 'body', 'программы')
     w.wait_for_text(d, 30, By.CSS_SELECTOR, 'body', 'Какие есть программы господдержки')
     w.wait_for_text(d, 30, By.CSS_SELECTOR, 'body', 'С какими банками мы работаем')
+
+def test_mortgage_calculator(driver_no_link: WebDriver):
+    d = driver_no_link
+
+    d.get(constants.urls["MORTGAGE_CALCULATOR"])
+    eh.check_element_is_present(d, '//span[text()="Подать заявку онлайн"]', By.XPATH);
+    eh.check_element_is_present(d, '//span[text()="Рассчитать досрочное погашение"]', By.XPATH);
+    w.wait_for_text(d, 30, By.CSS_SELECTOR, 'body', 'Ипотечный калькулятор')
+    w.wait_for_text(d, 30, By.CSS_SELECTOR, 'body', 'Персональные ставки от крупных банков')
+    w.wait_for_text(d, 30, By.CSS_SELECTOR, 'body', 'Такие же условия и ставки, как при обращении в банки напрямую')
+    w.wait_for_text(d, 30, By.CSS_SELECTOR, 'body', 'Предложения по ипотеке бесплатно за 10 минут')
