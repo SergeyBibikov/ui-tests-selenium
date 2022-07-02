@@ -145,3 +145,9 @@ def test_feedback_popup(driver: WebDriver):
     driver.find_element(By.XPATH, button_loc).click()
 
     eh.check_element_is_present(driver, form_loc, By.XPATH)
+
+def test_agent_help_page_lead_from_main(driver: WebDriver):
+    driver.find_element(By.CSS_SELECTOR, '[data-name="FinanceMainPage"]').click()
+    driver.switch_to.window(driver.window_handles[1])
+    w.wait_for_text(driver, 30, By.CSS_SELECTOR, 'body', 'Заявка риелтору')
+    w.wait_for_text(driver, 30, By.CSS_SELECTOR, 'body', 'Укажите ваш номер мобильного телефона')
