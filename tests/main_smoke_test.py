@@ -6,6 +6,7 @@ import helpers.waits as w
 import pytest_check as check
 from pageobjects.geoswitcher import GeoSwitcher
 from pageobjects.searchblock import SearchBlock
+from pageobjects.base import Base
 import time
 
 import pytest_check as check
@@ -58,14 +59,12 @@ def test_compare_promo_popup(driver: WebDriver):
 
 def test_cookies_notification_hides_on_confirmation(driver: WebDriver):
     elements = driver.find_elements(
-        By.CSS_SELECTOR, '[data-name="CookiesNotification"]')
+        By.CSS_SELECTOR, Base.coookies_notification)
     assert len(elements) == 1
 
-    el: WebElement = elements[0].find_element(
-        By.XPATH, '//span[text()="Принять"]')
-    el.click()
+    Base.close_cookies_notification()
     eh.check_element_is_not_present(
-        driver, '[data-name="CookiesNotification"]')
+        driver, Base.coookies_notification)
 
 
 def test_operation_kinds(driver: WebDriver):

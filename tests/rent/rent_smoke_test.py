@@ -6,6 +6,7 @@ from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.common.by import By
 from pageobjects.header import Header
+from pageobjects.base import Base
 
 from pageobjects.searchresults import SearchResults
 import helpers.elements as eh
@@ -44,14 +45,15 @@ def test_sort_order_filter(driver_rent: WebDriver):
     check.is_in('По дате добавления (сначала новые)', text)
     check.is_in('По дате добавления (сначала старые)', text)
 
-# def test_ad_buttons(driver_rent: WebDriver):
-#     driver_rent.implicitly_wait(10)
-#     elements = driver_rent.find_elements(
-#         By.CSS_SELECTOR, '[data-name="CookiesNotification"]')
-#     el: WebElement = elements[0].find_element(
-#         By.XPATH, '//span[text()="Принять"]')
-#     el.click()
-#     header = Header(driver_rent)
-#     header.close_compare_promo()
-#     SearchResults.click_first_result(driver_rent)
-#     time.sleep(10)
+def test_ad_contacts_buttons(driver_rent: WebDriver):
+    d = driver_rent
+    d.implicitly_wait(10)
+
+    Base.close_cookies_notification(d)
+    header = Header(driver_rent)
+    header.close_compare_promo()
+    SearchResults.click_first_result(driver_rent)
+    d.switch_to.window(d.window_handles[1])
+    els = d.find_elements(By.XPATH, '//button[span[text()="Показать телефон"]]')
+    check.equal(len(els), 2)
+    eh.check_element_is_present(d, '//button[span[text()="Написать"]]', By.XPATH)
