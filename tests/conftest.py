@@ -10,6 +10,7 @@ def get_driver():
         options.add_argument("--headless")
     options.add_experimental_option('excludeSwitches', ['enable-logging'])
     d = webdriver.Chrome(options=options)
+    d.implicitly_wait(5)
     pform = platform.system()
     if pform == 'Linux':
         d.set_window_size("1366", "768")

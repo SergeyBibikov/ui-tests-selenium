@@ -6,12 +6,14 @@ from selenium.webdriver.common.by import By
 import pytest_check as check
 
 from pageobjects.header import Header
+from pageobjects.base import Base
 import helpers.scripts as s
 import helpers.elements as eh
 
 GET_CODE = '//form//button[span[text()="Получить код"]]'
 DIFFERENT_METHOD = '//form//button[span[text()="Другим способом"]]'
 SIGN_IN_WITH_PHONE = '//form//button[span[text()="Войти по телефону"]]'
+NEED_HELP_LINK = '//a[div[text()="Нужна помощь?"]]'
 icons = {
     "MAIL_RU":"//button[@title='Почта Mail.Ru']",
     "VK":"//button[@title='ВКонтакте']",
@@ -23,8 +25,6 @@ def test_phone_field_red_border_on_empty_phone(driver: WebDriver):
     expected_initial_border = '1px solid rgb(206, 209, 215)'
     expected_border_after_validation = '1px solid rgb(255, 31, 52)'
     phone_input = 'form div[class*="--input-wrapper"]'
-
-    driver.implicitly_wait(5)
 
     header = Header(driver)
     header.sign_in_button.click()
@@ -41,7 +41,6 @@ def test_phone_field_red_border_on_empty_phone(driver: WebDriver):
     check.equal(border, expected_border_after_validation)
 
 def test_other_sign_in_methods_icons(driver: WebDriver):
-    driver.implicitly_wait(5)
 
     header = Header(driver)
     header.sign_in_button.click()
@@ -53,3 +52,17 @@ def test_other_sign_in_methods_icons(driver: WebDriver):
     eh.check_element_is_present(driver, icons['VK'], By.XPATH)
     eh.check_element_is_present(driver, icons['APPLE_ID'], By.XPATH)
     eh.check_element_is_present(driver, icons['MORE'], By.XPATH)
+
+def test_need_help_form_lead(driver: WebDriver):
+
+    header = Header(driver)
+    header.sign_in_button.click()
+    Base.close_cookies_notification(driver)
+
+    driver.find_element(By.XPATH, NEED_HELP_LINK).click()
+    driver.switch_to.window(driver.window_handles[1])
+
+    check.is_in("contacts", driver.current_url)
+    eh.check_element_is_present(driver, '//span[text()="Напишите нам"]', By.XPATH)
+    eh.check_element_is_present(driver, '//button[span[text()="Отправить"]]', By.XPATH)
+    eh.check_element_is_present(driver, '//a[span[text()="Закрыть"]]', By.XPATH)

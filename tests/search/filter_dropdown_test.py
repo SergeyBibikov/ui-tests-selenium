@@ -119,7 +119,7 @@ def test_estate_agent_search(driver: WebDriver):
 
 
 def test_room_count_filter(driver: WebDriver):
-    driver.implicitly_wait(10)
+    
 
     search = SearchBlock(driver)
 
@@ -142,7 +142,7 @@ def test_room_count_filter(driver: WebDriver):
 
 
 def test_price_input_fields_presence(driver: WebDriver):
-    driver.implicitly_wait(10)
+    
 
     search = SearchBlock(driver)
 
@@ -156,7 +156,7 @@ def test_price_input_fields_presence(driver: WebDriver):
     eh.check_element_is_present(dropdown, 'input[placeholder="до"]')
 
 def test_location_suggestion_popup_should_include_different_location_types(driver: WebDriver):
-    driver.implicitly_wait(10)
+    
 
     search = SearchBlock(driver)
     search.enter_location('Москва')

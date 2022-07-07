@@ -91,7 +91,7 @@ def test_go_to_compare(driver: WebDriver):
 
 
 def test_empty_favourites_card_text(driver: WebDriver):
-    driver.implicitly_wait(5)
+    
 
     eh.check_element_is_not_present(
         driver, Header.favsCard, By.XPATH)
@@ -115,7 +115,7 @@ def test_empty_notifications_card(driver: WebDriver):
     n_card = Header.notificationsCard["root"]
     n_card_body = Header.notificationsCard["body"]
 
-    driver.implicitly_wait(5)
+    
 
     eh.check_element_is_not_present(
         driver, n_card, By.XPATH)
@@ -138,7 +138,7 @@ def test_notification_card_more_info_list(driver: WebDriver):
     more_icon = Header.notificationsCard["more"]["icon"]
     more_list = Header.notificationsCard["more"]["list"]
 
-    driver.implicitly_wait(5)
+    
 
     header = Header(driver)
     header.close_compare_promo()
@@ -161,7 +161,7 @@ def test_notification_card_more_info_list(driver: WebDriver):
 
 
 def test_go_to_favs_page_from_favs_card(driver: WebDriver):
-    driver.implicitly_wait(5)
+    
 
     header = Header(driver)
     header.close_compare_promo()
@@ -202,7 +202,7 @@ def test_layout_change_on_smaller_window_size(driver: WebDriver):
 # TODO: add click on any links to test the transition
 
 def test_rent_action_kinds_on_hover(driver: WebDriver):
-    driver.implicitly_wait(5)
+    
 
     header = Header(driver)
 
@@ -225,7 +225,7 @@ def test_rent_action_kinds_on_hover(driver: WebDriver):
 
 
 def test_sell_dropdown_content(driver: WebDriver):
-    driver.implicitly_wait(5)
+    
 
     header = Header(driver)
 
@@ -246,7 +246,7 @@ def test_sell_dropdown_content(driver: WebDriver):
 
 
 def test_new_houses_dropdown_content(driver: WebDriver):
-    driver.implicitly_wait(5)
+    
 
     header = Header(driver)
 
@@ -267,7 +267,7 @@ def test_new_houses_dropdown_content(driver: WebDriver):
 
 
 def test_houses_and_land_dropdown_content(driver: WebDriver):
-    driver.implicitly_wait(5)
+    
 
     header = Header(driver)
 
@@ -288,7 +288,7 @@ def test_houses_and_land_dropdown_content(driver: WebDriver):
 
 
 def test_MORTGAGE_MAIN_dropdown_content(driver: WebDriver):
-    driver.implicitly_wait(5)
+    
 
     header = Header(driver)
 
@@ -308,7 +308,7 @@ def test_MORTGAGE_MAIN_dropdown_content(driver: WebDriver):
 
 
 def test_commercial_estate(driver: WebDriver):
-    driver.implicitly_wait(5)
+    
 
     header = Header(driver)
 

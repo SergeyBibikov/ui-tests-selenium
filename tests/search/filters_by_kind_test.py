@@ -14,7 +14,7 @@ import constants
 
 def test_estimate_should_have_4_filters(driver: WebDriver):
 
-    driver.implicitly_wait(10)
+    
 
     search = SearchBlock(driver)
 
@@ -27,7 +27,7 @@ def test_estimate_should_have_4_filters(driver: WebDriver):
 
 def test_MORTGAGE_MAIN_should_have_5_filters(driver: WebDriver):
 
-    driver.implicitly_wait(10)
+    
 
     search = SearchBlock(driver)
 
@@ -42,7 +42,7 @@ def test_MORTGAGE_MAIN_should_have_5_filters(driver: WebDriver):
 
 def test_estate_agent_selection_should_have_3_filters(driver: WebDriver):
 
-    driver.implicitly_wait(10)
+    
 
     search = SearchBlock(driver)
 
@@ -53,7 +53,7 @@ def test_estate_agent_selection_should_have_3_filters(driver: WebDriver):
     check.equal(len(filters), 3)
 
 def test_buy_should_have_4_filters(driver: WebDriver):
-    driver.implicitly_wait(10)
+    
 
     search = SearchBlock(driver)
 
@@ -65,7 +65,7 @@ def test_buy_should_have_4_filters(driver: WebDriver):
     eh.check_element_is_present(driver, search.location_filter_loc)
 
 def test_rent_should_have_4_filters(driver: WebDriver):
-    driver.implicitly_wait(10)
+    
 
     search = SearchBlock(driver)
 
@@ -77,7 +77,7 @@ def test_rent_should_have_4_filters(driver: WebDriver):
     eh.check_element_is_present(driver, search.location_filter_loc)
 
 def test_24_hour_rent_should_have_4_filters(driver: WebDriver):
-    driver.implicitly_wait(10)
+    
 
     search = SearchBlock(driver)
 

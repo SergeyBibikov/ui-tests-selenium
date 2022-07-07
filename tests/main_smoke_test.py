@@ -83,7 +83,7 @@ def test_operation_kinds(driver: WebDriver):
 
 
 def test_location_change(driver: WebDriver):
-    driver.implicitly_wait(10)
+    
 
     geo_sw = GeoSwitcher(driver)
     geo_sw.change_location('Казань')
@@ -92,7 +92,7 @@ def test_location_change(driver: WebDriver):
 
 
 def test_search_with_default_params(driver: WebDriver):
-    driver.implicitly_wait(10)
+    
     results = '[data-name="SummaryHeader"]'
 
     driver.find_element(
@@ -102,7 +102,7 @@ def test_search_with_default_params(driver: WebDriver):
 
 
 def test_map_opening(driver: WebDriver):
-    driver.implicitly_wait(10)
+    
 
     search = SearchBlock(driver)
     search.show_on_map()
@@ -134,7 +134,7 @@ def test_footer_sections(driver: WebDriver):
 
 def test_feedback_popup(driver: WebDriver):
 
-    driver.implicitly_wait(10)
+    
 
     button_loc = '//*[@alt="UX Feedback"]/..'
     form_loc = '//h2[text()="Насколько легко пользоваться нашим сайтом?"]/following-sibling::ul'
