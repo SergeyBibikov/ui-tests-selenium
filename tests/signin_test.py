@@ -9,11 +9,17 @@ from pageobjects.header import Header
 from pageobjects.base import Base
 import helpers.scripts as s
 import helpers.elements as eh
+import helpers.waits as w
 
 GET_CODE = '//form//button[span[text()="Получить код"]]'
 DIFFERENT_METHOD = '//form//button[span[text()="Другим способом"]]'
 SIGN_IN_WITH_PHONE = '//form//button[span[text()="Войти по телефону"]]'
 NEED_HELP_LINK = '//a[div[text()="Нужна помощь?"]]'
+EMAIL_ID_INPUT = 'form input[name="username"]'
+CONTINUE = '//form//button[span[text()="Продолжить"]]'
+CREATE_ACCOUNT = '//form//button[span[text()="Создать аккаунт"]]'
+FORGOT_PASSWORD = '//a[text()="Забыли пароль?"]'
+AUTH_MODAL = '[data-name="AuthenticationModal"]'
 icons = {
     "MAIL_RU":"//button[@title='Почта Mail.Ru']",
     "VK":"//button[@title='ВКонтакте']",
@@ -66,3 +72,18 @@ def test_need_help_form_lead(driver: WebDriver):
     eh.check_element_is_present(driver, '//span[text()="Напишите нам"]', By.XPATH)
     eh.check_element_is_present(driver, '//button[span[text()="Отправить"]]', By.XPATH)
     eh.check_element_is_present(driver, '//a[span[text()="Закрыть"]]', By.XPATH)
+
+def test_forgot_password(driver: WebDriver):
+    header = Header(driver)
+    header.sign_in_button.click()
+    
+    driver.find_element(By.XPATH, DIFFERENT_METHOD).click()
+    driver.find_element(By.CSS_SELECTOR, EMAIL_ID_INPUT).send_keys("1")
+    driver.find_element(By.XPATH, CONTINUE).click()
+    driver.find_element(By.XPATH, FORGOT_PASSWORD).click()
+    w.wait_for_text(driver, 30, By.CSS_SELECTOR, AUTH_MODAL, 
+        'Восстановление пароля')
+    w.wait_for_text(driver, 30, By.CSS_SELECTOR, AUTH_MODAL,
+        'Введите email, который вы указали при регистрации')
+    eh.check_element_is_present(driver, CONTINUE, By.XPATH)
+    eh.check_element_is_present(driver, CREATE_ACCOUNT, By.XPATH)
