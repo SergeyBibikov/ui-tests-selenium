@@ -33,6 +33,13 @@ def driver_rent():
     d.close()
 
 @pytest.fixture
+def driver_place_ad():
+    d = get_driver()
+    d.get(constants.urls["PLACE_AD"])
+    yield d
+    d.close()
+
+@pytest.fixture
 def driver_no_link():
     d = get_driver()
     yield d

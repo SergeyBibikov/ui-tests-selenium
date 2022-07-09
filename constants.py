@@ -6,4 +6,5 @@ urls = {
     "MORTGAGE_MAIN": "https://www.cian.ru/ipoteka-main/",
     "MORTGAGE": "https://www.cian.ru/ipoteka/",
     "MORTGAGE_CALCULATOR": "https://www.cian.ru/ipoteka/calculator",
+    "PLACE_AD": "https://www.cian.ru/razmestit-obyavlenie/"
 }
