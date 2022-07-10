@@ -25,13 +25,13 @@
 	"driver find element": {
 		"prefix": "fe",
 		"body": [
-			"driver.find_element(By.CSS_SELECTOR, $1)"
+			"driver.find_element(By.XPATH, $1)"
 		],
 	},
 	"get element text": {
 		"prefix": "gt",
 		"body": [
-			"driver.find_element(By.CSS_SELECTOR, $1).get_attribute('textContent')"
+			"driver.find_element(By.XPATH, $1).get_attribute('textContent')"
 		],
 	},
 }

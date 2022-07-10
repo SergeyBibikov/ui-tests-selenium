@@ -13,9 +13,25 @@ import helpers.waits as w
 
 OWNER = '//div[text()="Собственник"]'
 HOMEOWNER_TOOLTIP = '//homeowner-tooltip//div'
+RULES_MODAL = '.cui-modal__dialog'
+DOCUMENTS_LIST = '//ul[@class="modal-rules__list"][2]'
 
 def test_tooltip_on_owner_selection(driver_place_ad: WebDriver):
     d = driver_place_ad
     eh.check_element_is_not_present(d, HOMEOWNER_TOOLTIP, By.XPATH)
     d.find_element(By.XPATH, OWNER).click()
     eh.check_element_is_present(d, HOMEOWNER_TOOLTIP, By.XPATH)
+
+def test_regulatory_documents(driver_place_ad: WebDriver):
+    d = driver_place_ad
+    d.find_element(By.XPATH, '//a[text()="Правила размещения"]').click()
+    w.wait_for_text(d, 30, By.CSS_SELECTOR,
+        RULES_MODAL, 'Документы, регулирующие размещение объявлений:')
+    w.wait_for_text(d, 30, By.XPATH,
+        DOCUMENTS_LIST, 'Лицензионное соглашение')
+    w.wait_for_text(d, 30, By.XPATH,
+        DOCUMENTS_LIST, 'Правила пользования сайтами')
+    w.wait_for_text(d, 30, By.XPATH,
+        DOCUMENTS_LIST, 'Федеральный Закон о Рекламе')
+    w.wait_for_text(d, 30, By.XPATH,
+        DOCUMENTS_LIST, 'Программа «Работаем честно»')
