@@ -12,6 +12,10 @@ import helpers.elements as eh
 import helpers.waits as w
 
 def test_popup_when_ad_is_added_to_favs(driver: WebDriver):
+    """
+    Check that the corresponding popup is seen in the
+    search results section
+    """
     pass
 
 def test_popup_when_ad_is_unfaved(driver: WebDriver):
