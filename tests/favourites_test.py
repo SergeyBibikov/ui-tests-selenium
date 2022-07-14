@@ -19,6 +19,10 @@ def test_popup_when_ad_is_added_to_favs(driver: WebDriver):
     pass
 
 def test_popup_when_ad_is_unfaved(driver: WebDriver):
+    """  
+    Checks if the popup  shows
+    when the ad is unfaved from the search results.
+    """
     pass
 
 def test_popup_on_deletion_from_favs(driver: WebDriver):
