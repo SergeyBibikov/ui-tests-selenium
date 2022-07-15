@@ -29,6 +29,9 @@ def test_popup_on_deletion_from_favs(driver: WebDriver):
     pass
 
 def test_sort_order_criteria(driver: WebDriver):
+    """  
+    Should have two criferia 
+    """
     pass
 
 def test_action_buttons_on_the_ad_in_favs(driver: WebDriver):
