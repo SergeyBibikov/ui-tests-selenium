@@ -35,5 +35,9 @@ def test_sort_order_criteria(driver: WebDriver):
     pass
 
 def test_action_buttons_on_the_ad_in_favs(driver: WebDriver):
+    """ 
+     Checks that there are buttons allowing
+     various actions on an item in favs
+      """
     pass
 
