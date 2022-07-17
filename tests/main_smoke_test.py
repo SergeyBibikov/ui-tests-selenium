@@ -65,7 +65,7 @@ def test_cookies_notification_hides_on_confirmation(driver: WebDriver):
         By.CSS_SELECTOR, Base.coookies_notification)
     assert len(elements) == 1
 
-    Base.close_cookies_notification()
+    Base.close_cookies_notification(driver)
     eh.check_element_is_not_present(
         driver, Base.coookies_notification)
 

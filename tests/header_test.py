@@ -158,23 +158,6 @@ def test_notification_card_more_info_list(driver: WebDriver):
     assert 'Удалить все' in list_el_text
     assert 'Управление подписками' in list_el_text
 
-
-def test_go_to_favs_page_from_favs_card(driver: WebDriver):
-    
-
-    header = Header(driver)
-    header.close_compare_promo()
-    header.favourites.click()
-
-    card = driver.find_element(By.XPATH, Header.favsCard)
-    card.find_element(
-        By.XPATH, '//a[span[text()="Перейти в избранное"]]').click()
-
-    assert len(driver.window_handles) == 2
-    driver.switch_to.window(driver.window_handles[1])
-    assert '/favorites' in driver.current_url
-
-
 def test_place_ad_button_lead(driver: WebDriver):
 
     header = Header(driver)
@@ -189,13 +172,6 @@ def test_sign_in_button_should_trigger_sign_in_window(driver: WebDriver):
     header.close_compare_promo()
     header.sign_in_button.click()
     eh.check_element_is_present(driver, '[data-name="AuthenticationModal"]')
-
-
-def test_layout_change_on_smaller_window_size(driver: WebDriver):
-    eh.check_element_is_not_present(driver, Header.hamburger)
-    driver.set_window_size("800", "600")
-    eh.check_element_is_present(driver, Header.hamburger)
-
 
 """ TESTS OF DROPDOWN CONTENT AFTER HOVER ON A HEADER LINK """
 # TODO: add click on any links to test the transition

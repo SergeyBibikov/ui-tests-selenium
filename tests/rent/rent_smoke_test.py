@@ -25,7 +25,7 @@ def test_recommend_block_categories(driver_rent: WebDriver):
     check.is_in('стиральная машина', text)
     check.is_in('изолированные комнаты', text)
     check.is_in('на длительный срок', text)
-    check.is_in('не под реновацию', text)
+    check.is_in('без залога', text)
     check.is_in('рядом с метро', text)
 
 def test_sort_order_filter(driver_rent: WebDriver):
