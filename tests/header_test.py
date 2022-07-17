@@ -91,23 +91,22 @@ def test_go_to_compare(driver: WebDriver):
 
 
 def test_empty_favourites_card_text(driver: WebDriver):
-    
+    EMPTY_RESULTS = 'div[data-name="ResultsEmpty"]'
 
     eh.check_element_is_not_present(
         driver, Header.favsCard, By.XPATH)
 
     header = Header(driver)
     header.favourites.click()
-    eh.check_element_is_present(driver, Header.favsCard, By.XPATH)
+    eh.check_element_is_present(driver, EMPTY_RESULTS)
 
-    card = driver.find_element(By.XPATH, Header.favsCardBody)
-    assert 'Добавляйте объявления в избранное' in card.get_attribute(
-        'textContent')
+    card = driver.find_element(By.CSS_SELECTOR, EMPTY_RESULTS)
+    text = card.get_attribute('textContent')
+    check.is_in('Добавляйте', text)
+    check.is_in('объявления в избранное', text)
 
-    driver.find_element(By.XPATH, '//button[text()="ЖК"]').click()
-    card = driver.find_element(By.XPATH, Header.favsCardBody)
-    assert 'Здесь будут любимые жилые комплексы' in card.get_attribute(
-        'textContent')
+    driver.find_element(By.XPATH, '//li[text()="Жилые комплексы"]').click()
+    eh.check_element_is_present(driver, '//span[text()="Сохраняйте интересные жилые комплексы"]', By.XPATH)
 
 
 def test_empty_notifications_card(driver: WebDriver):
