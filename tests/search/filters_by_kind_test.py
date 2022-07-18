@@ -25,9 +25,7 @@ def test_estimate_should_have_4_filters(driver: WebDriver):
 
     check.equal(len(filters), 4)
 
-def test_MORTGAGE_MAIN_should_have_5_filters(driver: WebDriver):
-
-    
+def test_mortgage_should_have_5_filters(driver: WebDriver):
 
     search = SearchBlock(driver)
 
