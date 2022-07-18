@@ -83,7 +83,7 @@ def test_popup_notifications(driver: WebDriver):
 def test_go_to_compare(driver: WebDriver):
     header = Header(driver)
     header.compare_objects.click()
-    driver.switch_to.window(driver.window_handles[1])
+    a.switchToNthTab(driver, 2)
     eh.check_element_is_present(
         driver, '//h1[text()="Список сравнения пуст"]', By.XPATH)
     eh.check_element_is_present(

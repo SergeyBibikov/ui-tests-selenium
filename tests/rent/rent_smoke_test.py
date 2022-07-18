@@ -10,6 +10,7 @@ from pageobjects.base import Base
 
 from pageobjects.searchresults import SearchResults
 import helpers.elements as eh
+import helpers.actions as a
 
 QUICK_LINKS = '[data-name="QuickLinksList"]'
 SORT_BUTTON = 'button[data-mark="SortDropdownButton"]'
@@ -53,7 +54,7 @@ def test_ad_contacts_buttons(driver_rent: WebDriver):
     header = Header(driver_rent)
     header.close_compare_promo()
     SearchResults.click_first_result(driver_rent)
-    d.switch_to.window(d.window_handles[1])
+    a.switchToNthTab(d, 2)
     els = d.find_elements(By.XPATH, '//button[span[text()="Показать телефон"]]')
     check.equal(len(els), 2)
     eh.check_element_is_present(d, '//button[span[text()="Написать"]]', By.XPATH)

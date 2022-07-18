@@ -10,6 +10,7 @@ from pageobjects.base import Base
 import helpers.scripts as s
 import helpers.elements as eh
 import helpers.waits as w
+import helpers.actions as a
 
 GET_CODE = '//form//button[span[text()="Получить код"]]'
 DIFFERENT_METHOD = '//form//button[span[text()="Другим способом"]]'
@@ -66,7 +67,7 @@ def test_need_help_form_lead(driver: WebDriver):
     Base.close_cookies_notification(driver)
 
     driver.find_element(By.XPATH, NEED_HELP_LINK).click()
-    driver.switch_to.window(driver.window_handles[1])
+    a.switchToNthTab(driver, 2)
 
     check.is_in("contacts", driver.current_url)
     eh.check_element_is_present(driver, '//span[text()="Напишите нам"]', By.XPATH)

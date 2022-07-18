@@ -3,6 +3,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
 import helpers.elements as eh
 import helpers.waits as w
+import helpers.actions as a
 
 import pytest
 import pytest_check as check
@@ -86,16 +87,14 @@ def test_operation_kinds(driver: WebDriver):
 
 
 def test_location_change(driver: WebDriver):
-    
-
     geo_sw = GeoSwitcher(driver)
     geo_sw.change_location('Казань')
+
     w.wait_for_text(driver, 20, By.CSS_SELECTOR,
                     geo_sw.main_page_button, 'Казань')
 
 
 def test_search_with_default_params(driver: WebDriver):
-    
     results = '[data-name="SummaryHeader"]'
 
     driver.find_element(
@@ -105,7 +104,6 @@ def test_search_with_default_params(driver: WebDriver):
 
 
 def test_map_opening(driver: WebDriver):
-    
 
     search = SearchBlock(driver)
     search.show_on_map()
@@ -147,6 +145,6 @@ def test_feedback_popup(driver: WebDriver):
 
 def test_agent_help_page_lead_from_main(driver: WebDriver):
     driver.find_element(By.CSS_SELECTOR, '[data-name="FinanceMainPage"]').click()
-    driver.switch_to.window(driver.window_handles[1])
+    a.switchToNthTab(driver, 2)
     w.wait_for_text(driver, 30, By.CSS_SELECTOR, 'body', 'Заявка риелтору')
     w.wait_for_text(driver, 30, By.CSS_SELECTOR, 'body', 'Укажите ваш номер мобильного телефона')
