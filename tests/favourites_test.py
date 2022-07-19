@@ -14,13 +14,15 @@ import helpers.waits as w
 import helpers.actions as actions
 
 buttons = {
-    "ADD_TO_FOLDER":"[data-name='AddToFolderButtonContainer']",
-    "NOTE":"[data-name='NoteButton']",
-    "REMOVE":"[data-name='RemoveFavorite']",
-    "REPORT":"button[title='Пожаловаться']"
+    "ADD_TO_FOLDER": "[data-name='AddToFolderButtonContainer']",
+    "NOTE": "[data-name='NoteButton']",
+    "REMOVE": "[data-name='RemoveFavorite']",
+    "REPORT": "button[title='Пожаловаться']"
 }
 
-SORT_OPTIONS='[data-testid="sort_buttons"]'
+SORT_OPTIONS = '[data-testid="sort_buttons"]'
+DELETE_ALL = '//span[text()="Удалить все"]'
+
 
 def test_popup_when_ad_is_added_to_favs(driver_rent: WebDriver):
     d = driver_rent
@@ -38,22 +40,37 @@ def test_popup_when_ad_is_unfaved(driver_rent: WebDriver):
     SearchResults.toggle_first_result_favs(d)
     SearchResults.toggle_first_result_favs(d)
 
-    eh.check_element_is_present(d,'//span[text()="Удалено из избранного"]',By.XPATH)
-    eh.check_element_is_present(d,'//p[text()="Объявление удалено из избранного и всех подборок"]',By.XPATH)
-    eh.check_element_is_present(d,'//button[span[text()="Понятно"]]',By.XPATH)
+    eh.check_element_is_present(
+        d, '//span[text()="Удалено из избранного"]', By.XPATH)
+    eh.check_element_is_present(
+        d, '//p[text()="Объявление удалено из избранного и всех подборок"]', By.XPATH)
+    eh.check_element_is_present(
+        d, '//button[span[text()="Понятно"]]', By.XPATH)
 
 
-def test_popup_on_deletion_from_favs(driver_no_link: WebDriver):
-    pass
+def test_popup_on_all_favs_deletion(driver_rent: WebDriver):
+    d = driver_rent
+
+    SearchResults.toggle_first_result_favs(d)
+    header = Header(d)
+    header.favourites.click()
+    actions.switchToNthTab(d, 2)
+    d.find_element(By.XPATH, DELETE_ALL).click()
+    eh.check_element_is_present(d,
+                                '//div[text()="Вы действительно хотите удалить все избранные объекты?"]',
+                                By.XPATH)
 
 
 def test_sort_order_criteria(driver_no_link: WebDriver):
     d = driver_no_link
     d.get(constants.urls["FAVOURITES"])
-    d.find_element(By.XPATH, '//span[text()="По дате добавления в избранное"]').click()
-    
-    w.wait_for_text(d, 20, By.CSS_SELECTOR, SORT_OPTIONS, "По дате добавления в избранное")
+    d.find_element(
+        By.XPATH, '//span[text()="По дате добавления в избранное"]').click()
+
+    w.wait_for_text(d, 20, By.CSS_SELECTOR, SORT_OPTIONS,
+                    "По дате добавления в избранное")
     w.wait_for_text(d, 20, By.CSS_SELECTOR, SORT_OPTIONS, "По цене")
+
 
 def test_action_buttons_on_the_ad_in_favs(driver_rent: WebDriver):
     d = driver_rent
