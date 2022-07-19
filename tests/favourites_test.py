@@ -1,4 +1,5 @@
 import time
+import constants
 
 from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.common.by import By
@@ -18,6 +19,8 @@ buttons = {
     "REMOVE":"[data-name='RemoveFavorite']",
     "REPORT":"button[title='Пожаловаться']"
 }
+
+SORT_OPTIONS='[data-testid="sort_buttons"]'
 
 def test_popup_when_ad_is_added_to_favs(driver_rent: WebDriver):
     d = driver_rent
@@ -45,11 +48,12 @@ def test_popup_on_deletion_from_favs(driver_no_link: WebDriver):
 
 
 def test_sort_order_criteria(driver_no_link: WebDriver):
-    """  
-    Should have two criferia 
-    """
-    pass
-
+    d = driver_no_link
+    d.get(constants.urls["FAVOURITES"])
+    d.find_element(By.XPATH, '//span[text()="По дате добавления в избранное"]').click()
+    
+    w.wait_for_text(d, 20, By.CSS_SELECTOR, SORT_OPTIONS, "По дате добавления в избранное")
+    w.wait_for_text(d, 20, By.CSS_SELECTOR, SORT_OPTIONS, "По цене")
 
 def test_action_buttons_on_the_ad_in_favs(driver_rent: WebDriver):
     d = driver_rent
