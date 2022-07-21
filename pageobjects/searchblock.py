@@ -1,3 +1,5 @@
+import allure
+
 from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.common.by import By
@@ -20,6 +22,8 @@ class SearchBlock():
     filters_MORTGAGE_MAIN_and_agent = '//div[contains(@class,"filters")]'
     single_filter_loc = '//div[contains(@class,"filter") and not(contains(@class, "container"))]'
 
+    search_button = '[data-mark="FiltersSearchButton"]'
+
     MORTGAGE_MAIN_filters = {
         "estate_kind": '//div[@data-mark="FilterSingleChoose"][1]',
         "estate_price": '//div[@data-name="FilterAmountInput"][1]',
@@ -40,6 +44,13 @@ class SearchBlock():
             By.CSS_SELECTOR, self.price_filter_loc)
         self.location: WebElement = self.root.find_element(
             By.CSS_SELECTOR, self.location_filter_loc)
+        self.search_button: WebElement = self.root.find_element(
+            By.CSS_SELECTOR, self.search_button
+        )
+
+    @allure.step
+    def search(self):
+        self.search_button.click()
 
     def choose_kind(self, kind_name):
         self.root.find_element(By.LINK_TEXT, kind_name).click()
@@ -50,6 +61,7 @@ class SearchBlock():
     def show_on_map(self):
         self.driver.find_element(
             By.CSS_SELECTOR, self.show_on_map_loc).click()
-    
+            
+    @allure.step
     def enter_location(self, location):
         self.location.find_element(By.CSS_SELECTOR, 'input').send_keys(location)
