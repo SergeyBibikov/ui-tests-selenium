@@ -1,6 +1,4 @@
 A repo to practice Python and Selenium
 
 ADD:
--
-
-  , agent card sections
+ - agent card sections
