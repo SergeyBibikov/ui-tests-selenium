@@ -18,6 +18,7 @@ ABOUT_AGENT_SECTION = '[data-name="AboutRealtorDesktop"]'
 
 CONTACT_FORM = '[data-name="Aside"]'
 PROFILE_CONTENT = '[data-name="ViewDesktop"]'
+PHONE_CONTAINER = '[class*="phones-container"]'
 
 def test_contact_agent_form(driver_no_link: WebDriver):
     """
@@ -53,3 +54,20 @@ def test_agent_profile_sections(driver_no_link: WebDriver):
     w.wait_for_text(d, 20, By.CSS_SELECTOR, PROFILE_CONTENT, 'Контакты')
     w.wait_for_text(d, 20, By.CSS_SELECTOR, PROFILE_CONTENT, 'Аренда квартир и комнат')
     w.wait_for_text(d, 20, By.CSS_SELECTOR, PROFILE_CONTENT, 'Продажа квартир и комнат')
+
+def test_agent_phone_reveal(driver_no_link: WebDriver):
+    """
+    Checks that the phones is masked by default 
+    and is displayed on button click
+    """
+    d = driver_no_link
+
+    d.get(AGENT_PAGE)
+    text = d.find_element(By.CSS_SELECTOR, PHONE_CONTAINER).get_attribute('textContent')
+    check.is_in('XX-XX', text)
+
+    d.find_element(By.CSS_SELECTOR, PHONE_CONTAINER
+        ).find_element(By.XPATH, '//span[contains(., "Показать")]').click()
+    
+    text = d.find_element(By.CSS_SELECTOR, PHONE_CONTAINER).get_attribute('textContent')
+    check.is_not_in('XX-XX', text)
