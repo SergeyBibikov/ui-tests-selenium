@@ -17,6 +17,7 @@ AGENT_PAGE = 'https://www.cian.ru/agents/6954508/'
 ABOUT_AGENT_SECTION = '[data-name="AboutRealtorDesktop"]'
 
 CONTACT_FORM = '[data-name="Aside"]'
+PROFILE_CONTENT = '[data-name="ViewDesktop"]'
 
 def test_contact_agent_form(driver_no_link: WebDriver):
     """
@@ -43,9 +44,12 @@ def test_about_agent_section_content(driver_no_link: WebDriver):
     w.wait_for_text(d, 20, By.CSS_SELECTOR, ABOUT_AGENT_SECTION, 'Регион работы')
     w.wait_for_text(d, 20, By.CSS_SELECTOR, ABOUT_AGENT_SECTION, 'Агентство')
 
-def test_profile_sections(driver_no_link: WebDriver):
+def test_agent_profile_sections(driver_no_link: WebDriver):
     d = driver_no_link
 
     d.get(AGENT_PAGE)
 
-    w.wait_for_text(d, 20, By.CSS_SELECTOR, 'body', 'Отзывы о специалисте')
+    w.wait_for_text(d, 20, By.CSS_SELECTOR, PROFILE_CONTENT, 'Отзывы')
+    w.wait_for_text(d, 20, By.CSS_SELECTOR, PROFILE_CONTENT, 'Контакты')
+    w.wait_for_text(d, 20, By.CSS_SELECTOR, PROFILE_CONTENT, 'Аренда квартир и комнат')
+    w.wait_for_text(d, 20, By.CSS_SELECTOR, PROFILE_CONTENT, 'Продажа квартир и комнат')
