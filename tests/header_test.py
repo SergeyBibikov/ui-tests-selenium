@@ -10,6 +10,8 @@ import helpers.actions as a
 
 import pytest_check as check
 
+import constants as c
+
 """ TESTS OF DIFFERENT HEADER ELEMENTS """
 
 def test_links_list(driver: WebDriver):
@@ -171,7 +173,7 @@ def test_sign_in_button_should_trigger_sign_in_window(driver: WebDriver):
     header = Header(driver)
     header.close_compare_promo()
     header.sign_in_button.click()
-    eh.check_element_is_present(driver, '[data-name="AuthenticationModal"]')
+    eh.check_element_is_present(driver, c.common_elements["AUTH_MODAL"])
 
 """ TESTS OF DROPDOWN CONTENT AFTER HOVER ON A HEADER LINK """
 # TODO: add click on any links to test the transition

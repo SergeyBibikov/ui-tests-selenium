@@ -12,6 +12,8 @@ import helpers.elements as eh
 import helpers.waits as w
 import helpers.actions as a
 
+import constants as c
+
 GET_CODE = '//form//button[span[text()="Получить код"]]'
 DIFFERENT_METHOD = '//form//button[span[text()="Другим способом"]]'
 SIGN_IN_WITH_PHONE = '//form//button[span[text()="Войти по телефону"]]'
@@ -20,7 +22,7 @@ EMAIL_ID_INPUT = 'form input[name="username"]'
 CONTINUE = '//form//button[span[text()="Продолжить"]]'
 CREATE_ACCOUNT = '//form//button[span[text()="Создать аккаунт"]]'
 FORGOT_PASSWORD = '//a[text()="Забыли пароль?"]'
-AUTH_MODAL = '[data-name="AuthenticationModal"]'
+AUTH_MODAL = c.common_elements["AUTH_MODAL"]
 icons = {
     "MAIL_RU":"//button[@title='Почта Mail.Ru']",
     "VK":"//button[@title='ВКонтакте']",
