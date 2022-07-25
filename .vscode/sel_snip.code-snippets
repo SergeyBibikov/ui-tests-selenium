@@ -31,7 +31,7 @@
 	"get element text": {
 		"prefix": "gt",
 		"body": [
-			"driver.find_element(By.XPATH, $1).get_attribute('textContent')"
+			"text = driver.find_element(By.XPATH, $1).get_attribute('textContent')"
 		],
 	},
 }
