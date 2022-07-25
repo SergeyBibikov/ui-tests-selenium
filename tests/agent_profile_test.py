@@ -14,6 +14,7 @@ import helpers.waits as w
 import helpers.actions as actions
 
 AGENT_PAGE = 'https://www.cian.ru/agents/6954508/'
+AGENT_WITH_CONTACT_FORM = 'https://www.cian.ru/agents/21866732/'
 ABOUT_AGENT_SECTION = '[data-name="AboutRealtorDesktop"]'
 
 CONTACT_FORM = '[data-name="Aside"]'
@@ -30,7 +31,7 @@ def test_contact_agent_form(driver_no_link: WebDriver):
         you should see the contact form
     """
     d = driver_no_link
-    d.get(AGENT_PAGE)
+    d.get(AGENT_WITH_CONTACT_FORM)
     w.wait_for_text(d, 20, By.CSS_SELECTOR, CONTACT_FORM,
                     'Свяжитесь с риелтором')
     w.wait_for_text(d, 20, By.CSS_SELECTOR, CONTACT_FORM, 'Что нужно сделать')
