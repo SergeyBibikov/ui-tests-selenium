@@ -132,11 +132,12 @@ def test_footer_sections(driver: WebDriver):
     check.is_in('Недвижимость в Подмосковье', text)
     check.is_in('Объявления по всей России', text)
 
-@pytest.mark.xfail(reason="The feedback button went missing. Replace test if it is permanent")
 def test_feedback_popup(driver: WebDriver):
-
+    
     button_loc = '//*[@alt="UX Feedback"]/..'
     form_loc = '//h2[text()="Насколько легко пользоваться нашим сайтом?"]/following-sibling::ul'
+
+    Base.close_cookies_notification(driver)
 
     eh.check_element_is_not_present(driver, form_loc, By.XPATH)
     driver.find_element(By.XPATH, button_loc).click()
