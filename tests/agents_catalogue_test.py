@@ -18,6 +18,8 @@ CALL_BUTTON = '//button[span[text()="+7 800 511-79-..."]]'
 CALL_US_BANNER = '//div[@data-name="CallUsBanner"]/following-sibling::div[1]'
 DEAL_TYPE_FILTER = '//div[@data-name="DealTypeContainer"]'
 DEAL_FILTER_DROPDOWN = '//div[contains(@class, "dropdown") and contains(., "Любая сделка")]'
+ESTATE_KIND_FILTER = '//div[@data-name="DropdownWrapper"]'
+ESTATE_KIND_DROPDOWN = '//div[contains(@class, "dropdown") and not(contains(., "Любая недвижимость"))]'
 SORT_FILTER_DROPDOWN = '//div[contains(@class, "dropdown") and contains(., "По умолчанию")]'
 SORT_FILTER = '[data-name="SortFilter"]'
 SELECT_AGENT_BUTTON = AGENT_SELECTION_BANNER + \
@@ -30,6 +32,15 @@ def test_deal_kinds_filter(driver_agents_list: WebDriver):
     text = d.find_element(By.XPATH, DEAL_FILTER_DROPDOWN).get_attribute('textContent')
     check.is_in('Аренда', text)
     check.is_in('Покупка и продажа', text)
+
+def test_estate_kind_filter(driver_agents_list: WebDriver):
+    d = driver_agents_list
+    d.find_element(By.XPATH, ESTATE_KIND_FILTER).click()
+
+    text = d.find_element(By.XPATH, ESTATE_KIND_DROPDOWN).get_attribute('textContent')
+    check.is_in('Жилая', text)
+    check.is_in('Загородная', text)
+    check.is_in('Коммерческая', text)
 
 def test_agents_list_sorting_filters(driver_agents_list: WebDriver):
     d = driver_agents_list
