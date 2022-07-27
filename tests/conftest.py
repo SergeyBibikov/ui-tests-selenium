@@ -44,3 +44,10 @@ def driver_no_link():
     d = get_driver()
     yield d
     d.close()
+
+@pytest.fixture
+def driver_agents_list():
+    d = get_driver()
+    d.get(constants.urls["AGENTS_LIST"])
+    yield d
+    d.close()

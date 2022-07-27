@@ -16,33 +16,39 @@ import helpers.actions as actions
 AGENT_SELECTION_BANNER = '//*[@data-name="RealtorBannerCard"]'
 CALL_BUTTON = '//button[span[text()="+7 800 511-79-..."]]'
 CALL_US_BANNER = '//div[@data-name="CallUsBanner"]/following-sibling::div[1]'
-FILTER_DROPDOWN = '//div[contains(@class, "dropdown") and contains(., "По умолчанию")]'
+DEAL_TYPE_FILTER = '//div[@data-name="DealTypeContainer"]'
+DEAL_FILTER_DROPDOWN = '//div[contains(@class, "dropdown") and contains(., "Любая сделка")]'
+SORT_FILTER_DROPDOWN = '//div[contains(@class, "dropdown") and contains(., "По умолчанию")]'
 SORT_FILTER = '[data-name="SortFilter"]'
 SELECT_AGENT_BUTTON = AGENT_SELECTION_BANNER + \
     '//a[span[text()="Подобрать риелтора"]]'
 
+def test_deal_kinds_filter(driver_agents_list: WebDriver):
+    d = driver_agents_list
+    d.find_element(By.XPATH, DEAL_TYPE_FILTER).click()
 
-def test_agents_list_sorting_filters(driver_no_link: WebDriver):
-    d = driver_no_link
+    text = d.find_element(By.XPATH, DEAL_FILTER_DROPDOWN).get_attribute('textContent')
+    check.is_in('Аренда', text)
+    check.is_in('Покупка и продажа', text)
 
-    d.get(c.urls["AGENTS_LIST"])
+def test_agents_list_sorting_filters(driver_agents_list: WebDriver):
+    d = driver_agents_list
 
-    eh.check_element_is_not_present(d, FILTER_DROPDOWN, By.XPATH)
+    eh.check_element_is_not_present(d, SORT_FILTER_DROPDOWN, By.XPATH)
 
     d.find_element(By.CSS_SELECTOR, SORT_FILTER).click()
 
     text = d.find_element(
-        By.XPATH, FILTER_DROPDOWN).get_attribute('textContent')
+        By.XPATH, SORT_FILTER_DROPDOWN).get_attribute('textContent')
 
     check.is_in('По времени на Циан', text)
     check.is_in('По алфавиту', text)
     check.is_in('По количеству объявлений', text)
 
 
-def test_call_us_banner_is_present(driver_no_link: WebDriver):
-    d = driver_no_link
+def test_call_us_banner_is_present(driver_agents_list: WebDriver):
+    d = driver_agents_list
 
-    d.get(c.urls["AGENTS_LIST"])
 
     text = d.find_element(
         By.XPATH, CALL_US_BANNER).get_attribute('textContent')
@@ -54,14 +60,12 @@ def test_call_us_banner_is_present(driver_no_link: WebDriver):
     eh.check_element_is_present(d, CALL_US_BANNER + CALL_BUTTON, By.XPATH)
 
 
-def test_agent_selection_help_banner_is_present(driver_no_link: WebDriver):
-
-    d = driver_no_link
-
-    d.get(c.urls["AGENTS_LIST"])
+def test_agent_selection_help_banner_is_present(driver_agents_list: WebDriver):
+    d = driver_agents_list
 
     w.wait_for_text(d, 20, By.XPATH,
                     AGENT_SELECTION_BANNER, 'Бесплатно подберем риелтора')
     w.wait_for_text(d, 20, By.XPATH, AGENT_SELECTION_BANNER,
                     'Ответьте на несколько вопросов и вам позвонят подходящие риелторы')
     eh.check_element_is_present(d, SELECT_AGENT_BUTTON, By.XPATH)
+
