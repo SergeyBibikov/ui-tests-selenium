@@ -20,6 +20,7 @@ DEAL_TYPE_FILTER = '//div[@data-name="DealTypeContainer"]'
 DEAL_FILTER_DROPDOWN = '//div[contains(@class, "dropdown") and contains(., "Любая сделка")]'
 ESTATE_KIND_FILTER = '//div[@data-name="DropdownWrapper"]'
 ESTATE_KIND_DROPDOWN = '//div[contains(@class, "dropdown") and not(contains(., "Любая недвижимость"))]'
+SEARCH_BAR = '//input[@placeholder="Имя, телефон или название агентства"]'
 SORT_FILTER_DROPDOWN = '//div[contains(@class, "dropdown") and contains(., "По умолчанию")]'
 SORT_FILTER = '[data-name="SortFilter"]'
 SELECT_AGENT_BUTTON = AGENT_SELECTION_BANNER + \
@@ -41,6 +42,11 @@ def test_estate_kind_filter(driver_agents_list: WebDriver):
     check.is_in('Жилая', text)
     check.is_in('Загородная', text)
     check.is_in('Коммерческая', text)
+
+def test_search_bar_is_present(driver_agents_list: WebDriver):
+    d = driver_agents_list
+    
+    eh.check_element_is_present(d, SEARCH_BAR, By.XPATH)
 
 def test_agents_list_sorting_filters(driver_agents_list: WebDriver):
     d = driver_agents_list
