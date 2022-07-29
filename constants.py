@@ -1,6 +1,7 @@
 urls = {
     "AGENCIES_RATINGS": 'https://info.cian.ru/top-msk',
     "AGENTS_LIST": "https://www.cian.ru/realtors/",
+    "COMPARISON": "https://www.cian.ru/compare/",
     "COUNTRY_PROPERTY": "https://www.cian.ru/zagorod/",
     "FAVOURITES": "https://www.cian.ru/favorites/",
     "MAIN_PAGE": "https://www.cian.ru/",
