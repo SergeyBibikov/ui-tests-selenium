@@ -7,14 +7,18 @@ from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.common.by import By
 
 from pageobjects.searchblock import SearchBlock
-from pageobjects.searchresults import SearchResults
+from pageobjects.searchresults import SearchResults, CardIcons
+
 import helpers.elements as eh
 import helpers.waits as w
+import helpers.actions as a
+
 from constants import CommonElements
 
 COMPARISON_NOTIFICATION = '[data-name="ComparisonNotification"]'
-REPORT_MODAL = '//div[span[contains(.,"На что жалуетесь")]]/..'
+HINT_ON_HOVER = '//div[@data-popper-placement]'
 MAP = '//ymaps'
+REPORT_MODAL = '//div[span[contains(.,"На что жалуетесь")]]/..'
 
 def test_popup_when_ad_is_added_to_favs(driver_rent: WebDriver):
     d = driver_rent
@@ -95,3 +99,14 @@ def test_show_ad_object_on_map(driver_buy_flat_results: WebDriver):
     SearchResults.show_result_on_map(d)
 
     eh.check_element_is_present(d, MAP, By.XPATH)
+
+def test_the_download_pdf_button_is_present(driver_buy_flat_results: WebDriver):
+    d = driver_buy_flat_results
+
+    SearchResults.hover_on_first_result(d)
+
+    download_pdf = d.find_element(By.XPATH, CardIcons.DOWNLOAD_PDF)
+    a.hover(d, download_pdf)
+    
+    text = d.find_element(By.XPATH, HINT_ON_HOVER).get_attribute('textContent')
+    check.is_in('Скачать PDF', text)
