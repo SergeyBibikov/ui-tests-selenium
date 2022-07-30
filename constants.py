@@ -15,6 +15,6 @@ urls = {
     "ROOM_RENT": "https://www.cian.ru/snyat-komnatu/",
 }
 
-common_elements = {
-    "AUTH_MODAL": '[data-name="AuthenticationModal"]',
-}
+
+class CommonElements():
+    AUTH_MODAL = '[data-name="AuthenticationModal"]'

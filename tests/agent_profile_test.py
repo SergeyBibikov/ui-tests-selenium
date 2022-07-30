@@ -1,5 +1,5 @@
 import time
-import constants as c
+from constants import CommonElements
 
 from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.common.by import By
@@ -101,4 +101,4 @@ def test_sign_in_on_review_attempt(driver_no_link: WebDriver):
 
     d.find_element(By.XPATH, LEAVE_A_REVIEW).click()
 
-    eh.check_element_is_present(d, c.common_elements["AUTH_MODAL"])
+    eh.check_element_is_present(d, CommonElements.AUTH_MODAL)

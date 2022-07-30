@@ -34,3 +34,9 @@ class SearchResults():
         els = wait_for_elements(driver, result_card)
         hover(driver, els[0])
         driver.find_element(By.XPATH, f"{result_card}//button[@data-mark='ComparisonControl']").click()
+    
+    @staticmethod
+    def hide_ad(driver: WebDriver):
+        els = wait_for_elements(driver, result_card)
+        hover(driver, els[0])
+        driver.find_element(By.XPATH, f"{result_card}//button[@data-mark='HideOfferControl']").click()
