@@ -1,6 +1,8 @@
+# TODO: chtnge to the data class
 urls = {
     "AGENCIES_RATINGS": 'https://info.cian.ru/top-msk',
     "AGENTS_LIST": "https://www.cian.ru/realtors/",
+    "BUY_FLAT_RESULTS": "https://www.cian.ru/kupit-kvartiru/",
     "COMPARISON": "https://www.cian.ru/compare/",
     "COUNTRY_PROPERTY": "https://www.cian.ru/zagorod/",
     "FAVOURITES": "https://www.cian.ru/favorites/",

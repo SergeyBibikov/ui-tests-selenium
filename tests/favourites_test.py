@@ -24,30 +24,6 @@ SORT_OPTIONS = '[data-testid="sort_buttons"]'
 DELETE_ALL = '//span[text()="Удалить все"]'
 
 
-def test_popup_when_ad_is_added_to_favs(driver_rent: WebDriver):
-    d = driver_rent
-
-    SearchResults.toggle_first_result_favs(d)
-
-    eh.check_element_is_present(
-        d, '//div[text()="Сохранено в избранное"]', By.XPATH)
-
-
-def test_popup_when_ad_is_unfaved(driver_rent: WebDriver):
-
-    d = driver_rent
-
-    SearchResults.toggle_first_result_favs(d)
-    SearchResults.toggle_first_result_favs(d)
-
-    eh.check_element_is_present(
-        d, '//span[text()="Удалено из избранного"]', By.XPATH)
-    eh.check_element_is_present(
-        d, '//p[text()="Объявление удалено из избранного и всех подборок"]', By.XPATH)
-    eh.check_element_is_present(
-        d, '//button[span[text()="Понятно"]]', By.XPATH)
-
-
 def test_popup_on_all_favs_deletion(driver_rent: WebDriver):
     d = driver_rent
 
