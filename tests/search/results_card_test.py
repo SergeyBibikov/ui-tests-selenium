@@ -14,6 +14,7 @@ from constants import CommonElements
 
 COMPARISON_NOTIFICATION = '[data-name="ComparisonNotification"]'
 REPORT_MODAL = '//div[span[contains(.,"На что жалуетесь")]]/..'
+MAP = '//ymaps'
 
 def test_popup_when_ad_is_added_to_favs(driver_rent: WebDriver):
     d = driver_rent
@@ -86,3 +87,11 @@ def test_report_modal_content(driver_buy_flat_results: WebDriver):
     check.is_in('Жалоба от собственника объекта', text)
     check.is_in('Дубли объявлений', text)
     check.is_in('Публикация от юридического лица не на тарифе "Застройщик"', text)
+
+
+def test_show_ad_object_on_map(driver_buy_flat_results: WebDriver):
+    d = driver_buy_flat_results
+
+    SearchResults.show_result_on_map(d)
+
+    eh.check_element_is_present(d, MAP, By.XPATH)

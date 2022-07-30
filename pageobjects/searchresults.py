@@ -46,3 +46,9 @@ class SearchResults():
         els = wait_for_elements(driver, result_card)
         hover(driver, els[0])
         driver.find_element(By.XPATH, f"{result_card}//button[@data-mark='ComplainControl']").click()
+        
+    @staticmethod
+    def show_result_on_map(driver: WebDriver):
+        els = wait_for_elements(driver, result_card)
+        hover(driver, els[0])
+        driver.find_element(By.XPATH, f"{result_card}//button[@data-mark='ShowOfferOnMapControl']").click()
