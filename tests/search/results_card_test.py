@@ -13,6 +13,7 @@ import helpers.waits as w
 from constants import CommonElements
 
 COMPARISON_NOTIFICATION = '[data-name="ComparisonNotification"]'
+REPORT_MODAL = '//div[span[contains(.,"На что жалуетесь")]]/..'
 
 def test_popup_when_ad_is_added_to_favs(driver_rent: WebDriver):
     d = driver_rent
@@ -66,3 +67,22 @@ def test_hide_ad_triggers_sign_in_window(driver_buy_flat_results: WebDriver):
     SearchResults.hide_ad(d)
 
     eh.check_element_is_present(d, CommonElements.AUTH_MODAL)
+
+def test_report_modal_content(driver_buy_flat_results: WebDriver):
+    d = driver_buy_flat_results
+
+    SearchResults.report_ad(d)
+
+    text = d.find_element(By.XPATH, REPORT_MODAL).get_attribute('textContent')
+
+    check.is_in('Предложение уже неактуально или вымышленный объект', text)
+    check.is_in('Фотографии и видеоролики', text)
+    check.is_in('Цена ', text)
+    check.is_in('Адрес, расположение объекта', text)
+    check.is_in('Описание и параметры объекта', text)
+    check.is_in('Условия сделки указаны неверно', text)
+    check.is_in('Невозможно дозвониться или номер телефона ошибочный', text)
+    check.is_in('Мошенничество, правовые вопросы, хулиганство', text)
+    check.is_in('Жалоба от собственника объекта', text)
+    check.is_in('Дубли объявлений', text)
+    check.is_in('Публикация от юридического лица не на тарифе "Застройщик"', text)

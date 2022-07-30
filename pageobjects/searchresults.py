@@ -40,3 +40,9 @@ class SearchResults():
         els = wait_for_elements(driver, result_card)
         hover(driver, els[0])
         driver.find_element(By.XPATH, f"{result_card}//button[@data-mark='HideOfferControl']").click()
+
+    @staticmethod
+    def report_ad(driver: WebDriver):
+        els = wait_for_elements(driver, result_card)
+        hover(driver, els[0])
+        driver.find_element(By.XPATH, f"{result_card}//button[@data-mark='ComplainControl']").click()
