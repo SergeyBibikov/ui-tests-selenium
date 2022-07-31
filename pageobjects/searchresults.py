@@ -56,6 +56,10 @@ class SearchResults():
     def hover_on_first_result(driver: WebDriver):
         _hover_on_first_result(driver)
 
+    @staticmethod
+    def contact_ad_author(driver: WebDriver):
+        driver.find_element(By.XPATH, f"{result_card}//button[@data-name='ChatButtonContainer']").click()
+
 
 class CardIcons():
     DOWNLOAD_PDF = '//a[@data-mark="DownloadPDFControl"]'

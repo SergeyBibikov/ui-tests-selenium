@@ -109,3 +109,11 @@ def test_the_download_pdf_button_is_present(driver_buy_flat_results: WebDriver):
     
     text = d.find_element(By.XPATH, CommonElements.POPPER).get_attribute('textContent')
     check.is_in('Скачать PDF', text)
+
+def test_sign_in_modal_on_contact_agent_attempt(driver_buy_flat_results: WebDriver):
+    """ An authenticated user should not be allowed to contact the ad author"""
+    d = driver_buy_flat_results
+
+    SearchResults.contact_ad_author(d)
+
+    eh.check_element_is_present(d, CommonElements.AUTH_MODAL)
