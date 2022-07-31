@@ -7,6 +7,8 @@ class Header():
 
     hamburger = '[data-name="Hamburger"]'
 
+    houses_and_land = '//a[text()="Дома и участки"]'
+
     favsCard = '//a[@data-name="UtilityFavoritesContainer"]/following-sibling::div'
     favsCardHeader = favsCard + '//*[@data-name="FavoritesHeader"]'
     favsCardBody = favsCard + '//*[@data-name="NoFavorites"]'
