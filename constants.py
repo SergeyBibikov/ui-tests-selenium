@@ -16,6 +16,10 @@ urls = {
 }
 
 
+class Urls():
+    HOUSING_COMMUNITY = 'https://www.cian.ru/kottedzhnye-poselki-moskovskaya-oblast/'
+
+
 class CommonElements():
     AUTH_MODAL = '[data-name="AuthenticationModal"]'
     POPPER = '//div[@data-popper-placement]'
