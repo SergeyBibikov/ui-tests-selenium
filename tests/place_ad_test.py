@@ -11,12 +11,15 @@ import helpers.scripts as s
 import helpers.elements as eh
 import helpers.waits as w
 
-OWNER = '//div[text()="Собственник"]'
+DOCUMENTS_LIST = '//ul[@class="modal-rules__list"][2]'
 HOMEOWNER_TOOLTIP = '//homeowner-tooltip//div'
+OWNER = '//div[text()="Собственник"]'
+PLACEMENT_RULES = '//a[text()="Правила размещения"]'
+REPORT_A_PROBLEM_LINK = '//a[text()="Сообщить о проблеме"]'
+REPORT_A_PROBLEM_MODAL = '.modal-report-error'
 RULES_MODAL = '.cui-modal__dialog'
 RULES_LIST = '//ul[@class="modal-rules__list"][1]'
-DOCUMENTS_LIST = '//ul[@class="modal-rules__list"][2]'
-PLACEMENT_RULES = '//a[text()="Правила размещения"]'
+SEND_REPORT_BUTTON = '.modal-report-error__button'
 
 def test_tooltip_on_owner_selection(driver_place_ad: WebDriver):
     d = driver_place_ad
@@ -69,3 +72,20 @@ def test_rules_list(driver_place_ad: WebDriver):
         RULES_LIST, 'указаны верные условия оплаты (предоплата, залог) и точный размер комиссии')
     w.wait_for_text(d, 30, By.XPATH,
         RULES_LIST, 'использованы реальные фотографии объекта, и у вас есть права на их использование')
+
+def test_report_a_problem_popup(driver_place_ad: WebDriver):
+    d = driver_place_ad
+
+    d.find_element(By.XPATH, REPORT_A_PROBLEM_LINK).click()
+
+    modal = d.find_element(By.CSS_SELECTOR, REPORT_A_PROBLEM_MODAL)
+
+    text = modal.get_attribute('textContent')
+
+    check.is_in('Сообщить о проблеме', text)
+    check.is_in('Кратко опишите, что идет не так', text)
+    check.is_in('Мы постараемся', text)
+    check.is_in('исправить проблему как можно быстрее', text)
+    check.is_in('Ваш email', text)
+
+    eh.check_element_is_present(modal, SEND_REPORT_BUTTON)
