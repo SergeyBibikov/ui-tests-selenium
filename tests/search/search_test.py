@@ -11,8 +11,12 @@ from pageobjects.searchblock import SearchBlock
 import helpers.waits as w
 import helpers.elements as eh
 
+from constants import CommonElements
+
 ADVANCED_FILTERS = '[data-name="AdvancedFiltersContainer"]'
 ADVANCED_FILTERS_CARD = '//div[@data-name="Header" and @title="Нужно больше фильтров"]/../following-sibling::div[1]'
+DEAL_TYPE_FILTER = '#mainFilter_dealType'
+RENT_SELECT_OPTION = '//div[@data-name="SelectPopupOption" and text()="Снять"]'
 SAVE_SEARCH_BUTTON = '//span[text()="Сохранить поиск"]'
 SAVE_SEARCH_MODAL = '//div[@aria-modal="true" and contains(., "Сохранение поиска")]'
 
@@ -77,3 +81,14 @@ def test_save_search_popup(driver_buy_flat_results: WebDriver):
     check.is_in('Включить push-уведомления', text)
 
     eh.check_element_is_present(modal, SAVE_SEARCH_BUTTON, By.XPATH)
+
+def test_popup_on_operation_kind_change(driver_buy_flat_results: WebDriver):
+    d = driver_buy_flat_results
+
+    d.find_element(By.CSS_SELECTOR, DEAL_TYPE_FILTER).click()
+    d.find_element(By.XPATH, RENT_SELECT_OPTION).click()
+
+    text = d.find_element(By.XPATH, CommonElements.POPPER).get_attribute('textContent')
+    check.is_in('Найдено', text)
+    check.is_in('объявлен', text)
+    check.is_in('Применить', text)

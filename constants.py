@@ -18,3 +18,4 @@ urls = {
 
 class CommonElements():
     AUTH_MODAL = '[data-name="AuthenticationModal"]'
+    POPPER = '//div[@data-popper-placement]'

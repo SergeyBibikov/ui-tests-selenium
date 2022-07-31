@@ -44,7 +44,7 @@ def test_sign_in_button_is_present(driver: WebDriver):
     eh.check_element_is_present(
         header.root, '//a[span[text()="Войти"]]', By.XPATH)
 
-
+# TODO: move locators from tests to constants
 def test_popup_compare_objects(driver: WebDriver):
     eh.check_element_is_not_present(
         driver, '//div[@data-popper-placement][div[text()="Сравнение объектов"]]', By.XPATH

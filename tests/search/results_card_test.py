@@ -16,7 +16,6 @@ import helpers.actions as a
 from constants import CommonElements
 
 COMPARISON_NOTIFICATION = '[data-name="ComparisonNotification"]'
-HINT_ON_HOVER = '//div[@data-popper-placement]'
 MAP = '//ymaps'
 REPORT_MODAL = '//div[span[contains(.,"На что жалуетесь")]]/..'
 
@@ -108,5 +107,5 @@ def test_the_download_pdf_button_is_present(driver_buy_flat_results: WebDriver):
     download_pdf = d.find_element(By.XPATH, CardIcons.DOWNLOAD_PDF)
     a.hover(d, download_pdf)
     
-    text = d.find_element(By.XPATH, HINT_ON_HOVER).get_attribute('textContent')
+    text = d.find_element(By.XPATH, CommonElements.POPPER).get_attribute('textContent')
     check.is_in('Скачать PDF', text)
