@@ -22,4 +22,6 @@ class Urls():
 
 class CommonElements():
     AUTH_MODAL = '[data-name="AuthenticationModal"]'
+    ADVANCED_FILTERS = '[data-name="AdvancedFiltersContainer"]'
+    ADVANCED_FILTERS_CARD = '//div[@data-name="Header" and @title="Нужно больше фильтров"]/../following-sibling::div[1]'
     POPPER = '//div[@data-popper-placement]'

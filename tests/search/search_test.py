@@ -13,8 +13,6 @@ import helpers.elements as eh
 
 from constants import CommonElements
 
-ADVANCED_FILTERS = '[data-name="AdvancedFiltersContainer"]'
-ADVANCED_FILTERS_CARD = '//div[@data-name="Header" and @title="Нужно больше фильтров"]/../following-sibling::div[1]'
 DEAL_TYPE_FILTER = '#mainFilter_dealType'
 RENT_SELECT_OPTION = '//div[@data-name="SelectPopupOption" and text()="Снять"]'
 SAVE_SEARCH_BUTTON = '//span[text()="Сохранить поиск"]'
@@ -37,9 +35,9 @@ def test_non_existing_city_search(driver: WebDriver):
 def test_flat_search_results_additional_filters_list(driver_buy_flat_results: WebDriver):
     d = driver_buy_flat_results
 
-    d.find_element(By.CSS_SELECTOR, ADVANCED_FILTERS).click()
+    d.find_element(By.CSS_SELECTOR, CommonElements.ADVANCED_FILTERS).click()
 
-    text = d.find_element(By.XPATH, ADVANCED_FILTERS_CARD).get_attribute('textContent')
+    text = d.find_element(By.XPATH, CommonElements.ADVANCED_FILTERS_CARD).get_attribute('textContent')
 
     check.is_in('Тип сделки',text)
     check.is_in('До метро',text)
