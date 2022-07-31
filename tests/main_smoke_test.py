@@ -132,8 +132,9 @@ def test_footer_sections(driver: WebDriver):
     check.is_in('Недвижимость в Подмосковье', text)
     check.is_in('Объявления по всей России', text)
 
+
 def test_feedback_popup(driver: WebDriver):
-    
+
     button_loc = '//*[@alt="UX Feedback"]/..'
     form_loc = '//h2[text()="Насколько легко пользоваться нашим сайтом?"]/following-sibling::ul'
 
@@ -144,8 +145,11 @@ def test_feedback_popup(driver: WebDriver):
 
     eh.check_element_is_present(driver, form_loc, By.XPATH)
 
+
 def test_agent_help_page_lead_from_main(driver: WebDriver):
-    driver.find_element(By.CSS_SELECTOR, '[data-name="FinanceMainPage"]').click()
+    driver.find_element(
+        By.CSS_SELECTOR, '[data-name="FinanceMainPage"]').click()
     a.switchToNthTab(driver, 2)
     w.wait_for_text(driver, 30, By.CSS_SELECTOR, 'body', 'Заявка риелтору')
-    w.wait_for_text(driver, 30, By.CSS_SELECTOR, 'body', 'Укажите ваш номер мобильного телефона')
+    w.wait_for_text(driver, 30, By.CSS_SELECTOR, 'body',
+                    'Укажите ваш номер мобильного телефона')
