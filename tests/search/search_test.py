@@ -9,21 +9,19 @@ from selenium.webdriver.chrome.webdriver import WebDriver
 from pageobjects.searchblock import SearchBlock
 
 import helpers.waits as w
+import helpers.elements as eh
 
 ADVANCED_FILTERS = '[data-name="AdvancedFiltersContainer"]'
 ADVANCED_FILTERS_CARD = '//div[@data-name="Header" and @title="Нужно больше фильтров"]/../following-sibling::div[1]'
-
-@allure.step
-def checkText(textToFind, actualText, msg=""):
-    check.is_in(textToFind, actualText, msg)
-
+SAVE_SEARCH_BUTTON = '//span[text()="Сохранить поиск"]'
+SAVE_SEARCH_MODAL = '//div[@aria-modal="true" and contains(., "Сохранение поиска")]'
 
 def test_buy_default_filters(driver: WebDriver):
 
     sb = SearchBlock(driver)
     
-    checkText("Квартиру в новостройке и вторичке", sb.offer_type.text)
-    checkText("1, 2 комн.", sb.room_count.text)
+    check.is_in("Квартиру в новостройке и вторичке", sb.offer_type.text)
+    check.is_in("1, 2 комн.", sb.room_count.text)
 
 def test_non_existing_city_search(driver: WebDriver):
     sb = SearchBlock(driver)
@@ -63,3 +61,19 @@ def test_flat_search_results_additional_filters_list(driver_buy_flat_results: We
     check.is_in('Исключить слова в объявлении',text)
     check.is_in('Номер телефона',text)
     check.is_in('Номер объявления',text)
+
+def test_save_search_popup(driver_buy_flat_results: WebDriver):
+    d = driver_buy_flat_results
+
+    d.find_element(By.XPATH, SAVE_SEARCH_BUTTON).click()
+    modal = d.find_element(By.XPATH, SAVE_SEARCH_MODAL)
+
+    text = modal.get_attribute('textContent')
+
+    check.is_in('Назовите поиск', text)
+    check.is_in('Частота уведомлений', text)
+    check.is_in('Укажите почту', text)
+    check.is_in('Хочу получать новости Cian.ru', text)
+    check.is_in('Включить push-уведомления', text)
+
+    eh.check_element_is_present(modal, SAVE_SEARCH_BUTTON, By.XPATH)
