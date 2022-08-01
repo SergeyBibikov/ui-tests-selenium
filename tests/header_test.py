@@ -12,7 +12,14 @@ import pytest_check as check
 
 from constants import CommonElements
 
-""" TESTS OF DIFFERENT HEADER ELEMENTS """
+COMPARE_OBJECTS_POPUP = '//div[@data-popper-placement][div[text()="Сравнение объектов"]]'
+EMPTY_COMPARISON_LIST = '//h1[text()="Список сравнения пуст"]'
+EMPTY_RESULTS = 'div[data-name="ResultsEmpty"]'
+FAVOURITES_POPUP = '//div[@data-popper-placement][div[text()="Избранное"]]'
+FLAT_SEARCH_BUTTON = '//a[span[text()="Искать квартиры"]]'
+NOTIFICATIONS_POPUP = '//div[@data-popper-placement][div[text()="Уведомления"]]'
+RESIDENTIAL_HOMES = '//li[text()="Жилые комплексы"]'
+SAVE_INTERESTING_RES_HOMES = '//span[text()="Сохраняйте интересные жилые комплексы"]'
 
 def test_links_list(driver: WebDriver):
     expected_links_list = [
@@ -34,9 +41,7 @@ def test_links_list(driver: WebDriver):
 
 
 def test_place_ad_button_is_present(driver: WebDriver):
-    header = Header(driver)
-    eh.check_element_is_present(
-        header.root, '//a[span[text()="+ Разместить объявление"]]', By.XPATH)
+    eh.check_element_is_present(driver, Header.place_ad, By.XPATH)
 
 
 def test_sign_in_button_is_present(driver: WebDriver):
@@ -46,54 +51,42 @@ def test_sign_in_button_is_present(driver: WebDriver):
 
 # TODO: move locators from tests to constants
 def test_popup_compare_objects(driver: WebDriver):
-    eh.check_element_is_not_present(
-        driver, '//div[@data-popper-placement][div[text()="Сравнение объектов"]]', By.XPATH
-    )
+    eh.check_element_is_not_present(driver, COMPARE_OBJECTS_POPUP, By.XPATH)
 
     header = Header(driver)
     a.hover(driver, header.compare_objects)
 
-    eh.check_element_is_present(
-        driver, '//div[@data-popper-placement][div[text()="Сравнение объектов"]]', By.XPATH)
+    eh.check_element_is_present(driver, COMPARE_OBJECTS_POPUP, By.XPATH)
 
 
 def test_popup_favourites(driver: WebDriver):
 
-    eh.check_element_is_not_present(
-        driver, '//div[@data-popper-placement][div[text()="Избранное"]]', By.XPATH
-    )
+    eh.check_element_is_not_present(driver, FAVOURITES_POPUP, By.XPATH)
 
     header = Header(driver)
-    ActionChains(driver).move_to_element(header.favourites).perform()
+    a.hover(driver, header.favourites)
 
-    eh.check_element_is_present(
-        driver, '//div[@data-popper-placement][div[text()="Избранное"]]', By.XPATH)
+    eh.check_element_is_present(driver, FAVOURITES_POPUP, By.XPATH)
 
 
 def test_popup_notifications(driver: WebDriver):
-    eh.check_element_is_not_present(
-        driver, '//div[@data-popper-placement][div[text()="Уведомления"]]', By.XPATH
-    )
+    eh.check_element_is_not_present(driver, NOTIFICATIONS_POPUP, By.XPATH)
 
     header = Header(driver)
-    ActionChains(driver).move_to_element(header.notifications).perform()
+    a.hover(driver, header.notifications)
 
-    eh.check_element_is_present(
-        driver, '//div[@data-popper-placement][div[text()="Уведомления"]]', By.XPATH)
+    eh.check_element_is_present(driver, NOTIFICATIONS_POPUP, By.XPATH)
 
 
 def test_go_to_compare(driver: WebDriver):
     header = Header(driver)
     header.compare_objects.click()
     a.switchToNthTab(driver, 2)
-    eh.check_element_is_present(
-        driver, '//h1[text()="Список сравнения пуст"]', By.XPATH)
-    eh.check_element_is_present(
-        driver, '//a[span[text()="Искать квартиры"]]', By.XPATH)
+    eh.check_element_is_present(driver, EMPTY_COMPARISON_LIST, By.XPATH)
+    eh.check_element_is_present(driver, FLAT_SEARCH_BUTTON, By.XPATH)
 
 
 def test_empty_favourites_card_text(driver: WebDriver):
-    EMPTY_RESULTS = 'div[data-name="ResultsEmpty"]'
 
     eh.check_element_is_not_present(
         driver, Header.favsCard, By.XPATH)
@@ -107,16 +100,14 @@ def test_empty_favourites_card_text(driver: WebDriver):
     check.is_in('Добавляйте', text)
     check.is_in('объявления в избранное', text)
 
-    driver.find_element(By.XPATH, '//li[text()="Жилые комплексы"]').click()
-    eh.check_element_is_present(driver, '//span[text()="Сохраняйте интересные жилые комплексы"]', By.XPATH)
+    driver.find_element(By.XPATH, RESIDENTIAL_HOMES).click()
+    eh.check_element_is_present(driver, SAVE_INTERESTING_RES_HOMES, By.XPATH)
 
 
 def test_empty_notifications_card(driver: WebDriver):
 
     n_card = Header.notificationsCard["root"]
     n_card_body = Header.notificationsCard["body"]
-
-    
 
     eh.check_element_is_not_present(
         driver, n_card, By.XPATH)

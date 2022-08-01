@@ -26,6 +26,8 @@ class Header():
 
     main_dropdown = '[data-name="DropdownMainMenu"]'
 
+    place_ad = '//a[span[text()="+ Разместить объявление"]]'
+
     def __init__(self, driver: WebDriver):
         self.driver = driver
         self.root: WebElement = driver.find_element(
@@ -37,7 +39,7 @@ class Header():
         self.notifications: WebElement = self.root.find_element(
             By.CSS_SELECTOR, '[data-name="UtilityNotificationsContainer"]')
         self.place_ad_button: WebElement = self.root.find_element(
-            By.XPATH, '//a[span[text()="+ Разместить объявление"]]')
+            By.XPATH, self.place_ad)
         self.sign_in_button: WebElement = self.root.find_element(
             By.XPATH, '//a[span[text()="Войти"]]')
 

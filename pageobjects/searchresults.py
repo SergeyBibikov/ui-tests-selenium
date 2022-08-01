@@ -21,7 +21,6 @@ def _hover_on_first_result(driver):
     els = wait_for_elements(driver, result_card)
     hover(driver, els[0])
 
-# TODO: Refactor toggle funcs to take enum to determine action
 class SearchResults():
 
     @staticmethod
