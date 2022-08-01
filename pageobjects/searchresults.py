@@ -29,28 +29,12 @@ class SearchResults():
         first_card_ad_link = f"{result_card}//a[contains(@href, 'flat')]/span"
         els = wait_for_elements(driver, first_card_ad_link)
         els[0].click()
-    
 
     @staticmethod
     def toggle_first_result_icon(driver: WebDriver, icon: str):
         _hover_on_first_result(driver)
         driver.find_element(By.XPATH, f"{result_card}//button[@data-mark='{icon}']").click()
 
-    # @staticmethod
-    # def hide_ad(driver: WebDriver):
-    #     _hover_on_first_result(driver)
-    #     driver.find_element(By.XPATH, f"{result_card}//button[@data-mark='HideOfferControl']").click()
-
-    # @staticmethod
-    # def report_ad(driver: WebDriver):
-    #     _hover_on_first_result(driver)
-    #     driver.find_element(By.XPATH, f"{result_card}//button[@data-mark='ComplainControl']").click()
-        
-    # @staticmethod
-    # def show_result_on_map(driver: WebDriver):
-    #     _hover_on_first_result(driver)
-    #     driver.find_element(By.XPATH, f"{result_card}//button[@data-mark='ShowOfferOnMapControl']").click()
-    
     @staticmethod
     def hover_on_first_result(driver: WebDriver):
         _hover_on_first_result(driver)
@@ -65,5 +49,5 @@ class CardIcons():
     FAVOURITES = 'FavoritesControl'
     COMPARE = 'ComparisonControl'
     HIDE = 'HideOfferControl'
-    COMPLAIN = 'ComplainControl'
+    REPORT = 'ComplainControl'
     SHOW_ON_MAP = 'ShowOfferOnMapControl'

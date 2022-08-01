@@ -68,14 +68,14 @@ def test_popup_when_ad_is_removed_from_comparison(driver_buy_flat_results: WebDr
 def test_hide_ad_triggers_sign_in_window(driver_buy_flat_results: WebDriver):
     d = driver_buy_flat_results
 
-    SearchResults.hide_ad(d)
+    SearchResults.toggle_first_result_icon(d, CardIcons.HIDE)
 
     eh.check_element_is_present(d, CommonElements.AUTH_MODAL)
 
 def test_report_modal_content(driver_buy_flat_results: WebDriver):
     d = driver_buy_flat_results
 
-    SearchResults.report_ad(d)
+    SearchResults.toggle_first_result_icon(d, CardIcons.REPORT)
 
     text = d.find_element(By.XPATH, REPORT_MODAL).get_attribute('textContent')
 
@@ -95,7 +95,7 @@ def test_report_modal_content(driver_buy_flat_results: WebDriver):
 def test_show_ad_object_on_map(driver_buy_flat_results: WebDriver):
     d = driver_buy_flat_results
 
-    SearchResults.show_result_on_map(d)
+    SearchResults.toggle_first_result_icon(d, CardIcons.SHOW_ON_MAP)
 
     eh.check_element_is_present(d, MAP, By.XPATH)
 
