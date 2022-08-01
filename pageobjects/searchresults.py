@@ -1,3 +1,6 @@
+import enum
+import string
+
 from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.common.by import By
 
@@ -27,30 +30,26 @@ class SearchResults():
         els = wait_for_elements(driver, first_card_ad_link)
         els[0].click()
     
-    @staticmethod
-    def toggle_first_result_favs(driver: WebDriver):
-        _hover_on_first_result(driver)
-        driver.find_element(By.XPATH, f"{result_card}//button[@data-mark='FavoritesControl']").click()
 
     @staticmethod
-    def toggle_first_result_comparison(driver: WebDriver):
+    def toggle_first_result_icon(driver: WebDriver, icon: str):
         _hover_on_first_result(driver)
-        driver.find_element(By.XPATH, f"{result_card}//button[@data-mark='ComparisonControl']").click()
-    
-    @staticmethod
-    def hide_ad(driver: WebDriver):
-        _hover_on_first_result(driver)
-        driver.find_element(By.XPATH, f"{result_card}//button[@data-mark='HideOfferControl']").click()
+        driver.find_element(By.XPATH, f"{result_card}//button[@data-mark='{icon}']").click()
 
-    @staticmethod
-    def report_ad(driver: WebDriver):
-        _hover_on_first_result(driver)
-        driver.find_element(By.XPATH, f"{result_card}//button[@data-mark='ComplainControl']").click()
+    # @staticmethod
+    # def hide_ad(driver: WebDriver):
+    #     _hover_on_first_result(driver)
+    #     driver.find_element(By.XPATH, f"{result_card}//button[@data-mark='HideOfferControl']").click()
+
+    # @staticmethod
+    # def report_ad(driver: WebDriver):
+    #     _hover_on_first_result(driver)
+    #     driver.find_element(By.XPATH, f"{result_card}//button[@data-mark='ComplainControl']").click()
         
-    @staticmethod
-    def show_result_on_map(driver: WebDriver):
-        _hover_on_first_result(driver)
-        driver.find_element(By.XPATH, f"{result_card}//button[@data-mark='ShowOfferOnMapControl']").click()
+    # @staticmethod
+    # def show_result_on_map(driver: WebDriver):
+    #     _hover_on_first_result(driver)
+    #     driver.find_element(By.XPATH, f"{result_card}//button[@data-mark='ShowOfferOnMapControl']").click()
     
     @staticmethod
     def hover_on_first_result(driver: WebDriver):
@@ -63,3 +62,8 @@ class SearchResults():
 
 class CardIcons():
     DOWNLOAD_PDF = '//a[@data-mark="DownloadPDFControl"]'
+    FAVOURITES = 'FavoritesControl'
+    COMPARE = 'ComparisonControl'
+    HIDE = 'HideOfferControl'
+    COMPLAIN = 'ComplainControl'
+    SHOW_ON_MAP = 'ShowOfferOnMapControl'

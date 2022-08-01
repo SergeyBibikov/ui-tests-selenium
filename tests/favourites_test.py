@@ -8,7 +8,7 @@ import pytest_check as check
 
 from pageobjects.header import Header
 from pageobjects.base import Base
-from pageobjects.searchresults import SearchResults
+from pageobjects.searchresults import SearchResults, CardIcons
 import helpers.elements as eh
 import helpers.waits as w
 import helpers.actions as actions
@@ -27,7 +27,7 @@ DELETE_ALL = '//span[text()="Удалить все"]'
 def test_popup_on_all_favs_deletion(driver_rent: WebDriver):
     d = driver_rent
 
-    SearchResults.toggle_first_result_favs(d)
+    SearchResults.toggle_first_result_icon(d, CardIcons.FAVOURITES)
     header = Header(d)
     header.favourites.click()
     actions.switchToNthTab(d, 2)
@@ -51,7 +51,7 @@ def test_sort_order_criteria(driver_no_link: WebDriver):
 def test_action_buttons_on_the_ad_in_favs(driver_rent: WebDriver):
     d = driver_rent
 
-    SearchResults.toggle_first_result_favs(d)
+    SearchResults.toggle_first_result_icon(d, CardIcons.FAVOURITES)
     header = Header(d)
     header.favourites.click()
     actions.switchToNthTab(d, 2)

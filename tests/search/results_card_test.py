@@ -22,7 +22,7 @@ REPORT_MODAL = '//div[span[contains(.,"На что жалуетесь")]]/..'
 def test_popup_when_ad_is_added_to_favs(driver_rent: WebDriver):
     d = driver_rent
 
-    SearchResults.toggle_first_result_favs(d)
+    SearchResults.toggle_first_result_icon(d, CardIcons.FAVOURITES)
 
     eh.check_element_is_present(
         d, '//div[text()="Сохранено в избранное"]', By.XPATH)
@@ -32,8 +32,8 @@ def test_popup_when_ad_is_unfaved(driver_rent: WebDriver):
 
     d = driver_rent
 
-    SearchResults.toggle_first_result_favs(d)
-    SearchResults.toggle_first_result_favs(d)
+    SearchResults.toggle_first_result_icon(d, CardIcons.FAVOURITES)
+    SearchResults.toggle_first_result_icon(d, CardIcons.FAVOURITES)
 
     eh.check_element_is_present(
         d, '//span[text()="Удалено из избранного"]', By.XPATH)
@@ -45,7 +45,7 @@ def test_popup_when_ad_is_unfaved(driver_rent: WebDriver):
 def test_popup_when_ad_is_added_to_comparison(driver_buy_flat_results: WebDriver):
     d = driver_buy_flat_results
 
-    SearchResults.toggle_first_result_comparison(d)
+    SearchResults.toggle_first_result_icon(d, CardIcons.COMPARE)
 
     eh.check_element_is_present(d, COMPARISON_NOTIFICATION)
 
@@ -57,8 +57,8 @@ def test_popup_when_ad_is_added_to_comparison(driver_buy_flat_results: WebDriver
 def test_popup_when_ad_is_removed_from_comparison(driver_buy_flat_results: WebDriver):
     d = driver_buy_flat_results
 
-    SearchResults.toggle_first_result_comparison(d)
-    SearchResults.toggle_first_result_comparison(d)
+    SearchResults.toggle_first_result_icon(d, CardIcons.COMPARE)
+    SearchResults.toggle_first_result_icon(d, CardIcons.COMPARE)
 
     eh.check_element_is_present(d, COMPARISON_NOTIFICATION)
 
