@@ -49,7 +49,6 @@ def test_sign_in_button_is_present(driver: WebDriver):
     eh.check_element_is_present(
         header.root, '//a[span[text()="Войти"]]', By.XPATH)
 
-# TODO: move locators from tests to constants
 def test_popup_compare_objects(driver: WebDriver):
     eh.check_element_is_not_present(driver, COMPARE_OBJECTS_POPUP, By.XPATH)
 
@@ -167,7 +166,6 @@ def test_sign_in_button_should_trigger_sign_in_window(driver: WebDriver):
     eh.check_element_is_present(driver, CommonElements.AUTH_MODAL)
 
 """ TESTS OF DROPDOWN CONTENT AFTER HOVER ON A HEADER LINK """
-# TODO: add click on any links to test the transition
 
 def test_rent_action_kinds_on_hover(driver: WebDriver):
     

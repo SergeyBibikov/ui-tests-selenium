@@ -1,4 +1,4 @@
-# TODO: chtnge to the data class
+# TODO: change to the data class
 urls = {
     "AGENCIES_RATINGS": 'https://info.cian.ru/top-msk',
     "AGENTS_LIST": "https://www.cian.ru/realtors/",
