@@ -1,4 +1,4 @@
-import constants as c
+from constants import Urls
 
 from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.common.by import By
@@ -112,7 +112,7 @@ def test_agent_selection_help_banner_is_present(driver_agents_list: WebDriver):
 def test_rating_estate_kind_switch(driver_no_link: WebDriver):
     d = driver_no_link
 
-    d.get(c.urls["AGENCIES_RATINGS"])
+    d.get(Urls.AGENCIES_RATINGS)
 
     d.find_element(By.XPATH, RATING_COMMERCIAL_ESTATE_LABEL).click()
 

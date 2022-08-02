@@ -1,9 +1,5 @@
 # TODO: change to the data class
 urls = {
-    "AGENCIES_RATINGS": 'https://info.cian.ru/top-msk',
-    "AGENTS_LIST": "https://www.cian.ru/realtors/",
-    "BUY_FLAT_RESULTS": "https://www.cian.ru/kupit-kvartiru/",
-    "COMPARISON": "https://www.cian.ru/compare/",
     "COUNTRY_PROPERTY": "https://www.cian.ru/zagorod/",
     "FAVOURITES": "https://www.cian.ru/favorites/",
     "MAIN_PAGE": "https://www.cian.ru/",
@@ -17,6 +13,10 @@ urls = {
 
 
 class Urls():
+    AGENCIES_RATINGS = 'https://info.cian.ru/top-msk'
+    AGENTS_LIST = 'https://www.cian.ru/realtors/'
+    BUY_FLAT_RESULTS = 'https://www.cian.ru/kupit-kvartiru/'
+    COMPARISON = 'https://www.cian.ru/compare/'
     HOUSING_COMMUNITY = 'https://www.cian.ru/kottedzhnye-poselki-moskovskaya-oblast/'
 
 

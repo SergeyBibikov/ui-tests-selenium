@@ -2,6 +2,7 @@ import platform
 from selenium import webdriver
 import pytest
 import os
+from constants import Urls
 import constants
 
 def get_driver():
@@ -48,13 +49,13 @@ def driver_no_link():
 @pytest.fixture
 def driver_agents_list():
     d = get_driver()
-    d.get(constants.urls["AGENTS_LIST"])
+    d.get(Urls.AGENTS_LIST)
     yield d
     d.close()
 
 @pytest.fixture
 def driver_buy_flat_results():
     d = get_driver()
-    d.get(constants.urls["BUY_FLAT_RESULTS"])
+    d.get(Urls.BUY_FLAT_RESULTS)
     yield d
     d.close()
