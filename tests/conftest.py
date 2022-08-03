@@ -22,21 +22,21 @@ def get_driver():
 @pytest.fixture
 def driver():
     d = get_driver()
-    d.get(constants.urls["MAIN_PAGE"])
+    d.get(Urls.MAIN_PAGE)
     yield d
     d.close()
 
 @pytest.fixture
 def driver_rent():
     d = get_driver()
-    d.get(constants.urls["ROOM_RENT"])
+    d.get(Urls.ROOM_RENT)
     yield d
     d.close()
 
 @pytest.fixture
 def driver_place_ad():
     d = get_driver()
-    d.get(constants.urls["PLACE_AD"])
+    d.get(Urls.PLACE_AD)
     yield d
     d.close()
 

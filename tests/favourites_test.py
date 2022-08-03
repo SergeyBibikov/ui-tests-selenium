@@ -1,5 +1,5 @@
 import time
-import constants
+from constants import Urls
 
 from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.common.by import By
@@ -39,7 +39,7 @@ def test_popup_on_all_favs_deletion(driver_rent: WebDriver):
 
 def test_sort_order_criteria(driver_no_link: WebDriver):
     d = driver_no_link
-    d.get(constants.urls["FAVOURITES"])
+    d.get(Urls.FAVOURITES)
     d.find_element(
         By.XPATH, '//span[text()="По дате добавления в избранное"]').click()
 
