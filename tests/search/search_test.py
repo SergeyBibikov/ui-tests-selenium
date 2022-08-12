@@ -70,19 +70,17 @@ def test_flat_search_results_additional_filters_list(driver_buy_flat_results: We
     check.is_in('Номер объявления', text)
 
 
-def test_STABILIZE_save_search_popup(driver_buy_flat_results: WebDriver):
+def test_save_search_popup(driver_buy_flat_results: WebDriver):
     d = driver_buy_flat_results
 
     d.find_element(By.XPATH, SAVE_SEARCH_BUTTON).click()
     modal = d.find_element(By.XPATH, SAVE_SEARCH_MODAL)
 
     text = modal.get_attribute('textContent')
-
     check.is_in('Назовите поиск', text)
     check.is_in('Частота уведомлений', text)
     check.is_in('Укажите почту', text)
     check.is_in('Хочу получать новости Cian.ru', text)
-    check.is_in('Включить push-уведомления', text)
 
     eh.check_element_is_present(modal, SAVE_SEARCH_BUTTON, By.XPATH)
 

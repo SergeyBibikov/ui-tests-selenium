@@ -36,9 +36,10 @@ def test_STABILIZE_house_rent_additional_filters(driver: WebDriver):
 
     a.hover(d, header_link)
 
-    driver.find_element(By.XPATH, RENT_HOUSE_LINK).click()
+    d.find_element(By.XPATH, RENT_HOUSE_LINK).click()
 
-    d.find_element(By.CSS_SELECTOR, CommonElements.ADVANCED_FILTERS).click()
+    d.find_element(By.CSS_SELECTOR,
+                   CommonElements.ADVANCED_FILTERS).click()
 
     text = d.find_element(
         By.XPATH, CommonElements.ADVANCED_FILTERS_CARD).get_attribute('textContent')
