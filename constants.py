@@ -8,7 +8,7 @@ class Urls():
     FAVOURITES = 'https://www.cian.ru/favorites/'
     HOUSING_COMMUNITY = 'https://www.cian.ru/kottedzhnye-poselki-moskovskaya-oblast/'
     MAIN_PAGE = 'https://www.cian.ru/'
-    MORTGAGE = '"https://www.cian.ru/ipoteka/'
+    MORTGAGE = 'https://www.cian.ru/ipoteka/'
     MORTGAGE_CALCULATOR = 'https://www.cian.ru/ipoteka/calculator'
     MORTGAGE_MAIN = 'https://www.cian.ru/ipoteka-main/'
     NEW_HOUSES = 'https://www.cian.ru/novostrojki/'

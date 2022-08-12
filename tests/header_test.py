@@ -21,6 +21,7 @@ NOTIFICATIONS_POPUP = '//div[@data-popper-placement][div[text()="Уведомл�
 RESIDENTIAL_HOMES = '//li[text()="Жилые комплексы"]'
 SAVE_INTERESTING_RES_HOMES = '//span[text()="Сохраняйте интересные жилые комплексы"]'
 
+
 def test_links_list(driver: WebDriver):
     expected_links_list = [
         'Аренда',
@@ -48,6 +49,7 @@ def test_sign_in_button_is_present(driver: WebDriver):
     header = Header(driver)
     eh.check_element_is_present(
         header.root, '//a[span[text()="Войти"]]', By.XPATH)
+
 
 def test_popup_compare_objects(driver: WebDriver):
     eh.check_element_is_not_present(driver, COMPARE_OBJECTS_POPUP, By.XPATH)
@@ -85,7 +87,7 @@ def test_go_to_compare(driver: WebDriver):
     eh.check_element_is_present(driver, FLAT_SEARCH_BUTTON, By.XPATH)
 
 
-def test_empty_favourites_card_text(driver: WebDriver):
+def test_DELETE_empty_favourites_card_text(driver: WebDriver):
 
     eh.check_element_is_not_present(
         driver, Header.favsCard, By.XPATH)
@@ -112,7 +114,6 @@ def test_empty_notifications_card(driver: WebDriver):
         driver, n_card, By.XPATH)
 
     header = Header(driver)
-    header.close_compare_promo()
     header.notifications.click()
 
     eh.check_element_is_present(driver, n_card, By.XPATH)
@@ -129,10 +130,7 @@ def test_notification_card_more_info_list(driver: WebDriver):
     more_icon = Header.notificationsCard["more"]["icon"]
     more_list = Header.notificationsCard["more"]["list"]
 
-    
-
     header = Header(driver)
-    header.close_compare_promo()
     header.notifications.click()
 
     eh.check_element_is_not_present(
@@ -150,10 +148,10 @@ def test_notification_card_more_info_list(driver: WebDriver):
     assert 'Удалить все' in list_el_text
     assert 'Управление подписками' in list_el_text
 
+
 def test_place_ad_button_lead(driver: WebDriver):
 
     header = Header(driver)
-    header.close_compare_promo()
     header.place_ad_button.click()
 
     assert 'razmestit-obyavlenie' in driver.current_url
@@ -161,14 +159,14 @@ def test_place_ad_button_lead(driver: WebDriver):
 
 def test_sign_in_button_should_trigger_sign_in_window(driver: WebDriver):
     header = Header(driver)
-    header.close_compare_promo()
     header.sign_in_button.click()
     eh.check_element_is_present(driver, CommonElements.AUTH_MODAL)
 
+
 """ TESTS OF DROPDOWN CONTENT AFTER HOVER ON A HEADER LINK """
 
+
 def test_rent_action_kinds_on_hover(driver: WebDriver):
-    
 
     header = Header(driver)
 
@@ -191,7 +189,6 @@ def test_rent_action_kinds_on_hover(driver: WebDriver):
 
 
 def test_sell_dropdown_content(driver: WebDriver):
-    
 
     header = Header(driver)
 
@@ -212,7 +209,6 @@ def test_sell_dropdown_content(driver: WebDriver):
 
 
 def test_new_houses_dropdown_content(driver: WebDriver):
-    
 
     header = Header(driver)
 
@@ -233,7 +229,6 @@ def test_new_houses_dropdown_content(driver: WebDriver):
 
 
 def test_houses_and_land_dropdown_content(driver: WebDriver):
-    
 
     header = Header(driver)
 
@@ -254,7 +249,6 @@ def test_houses_and_land_dropdown_content(driver: WebDriver):
 
 
 def test_MORTGAGE_MAIN_dropdown_content(driver: WebDriver):
-    
 
     header = Header(driver)
 
@@ -274,7 +268,6 @@ def test_MORTGAGE_MAIN_dropdown_content(driver: WebDriver):
 
 
 def test_commercial_estate(driver: WebDriver):
-    
 
     header = Header(driver)
 

@@ -64,8 +64,6 @@ def test_agent_profile_sections(driver_no_link: WebDriver):
     w.wait_for_text(d, 20, By.CSS_SELECTOR, PROFILE_CONTENT, 'Отзывы')
     w.wait_for_text(d, 20, By.CSS_SELECTOR, PROFILE_CONTENT, 'Контакты')
     w.wait_for_text(d, 20, By.CSS_SELECTOR, PROFILE_CONTENT,
-                    'Аренда квартир и комнат')
-    w.wait_for_text(d, 20, By.CSS_SELECTOR, PROFILE_CONTENT,
                     'Продажа квартир и комнат')
 
 

@@ -51,7 +51,7 @@ def test_popular_ads_rent_tabs(driver: WebDriver):
     check.is_in('Посуточно', pop_text)
 
 
-def test_compare_promo_popup(driver: WebDriver):
+def test_DELETE_compare_promo_popup(driver: WebDriver):
     loc = '[data-name="CompareOnboarding"]'
     eh.check_element_is_present(driver, loc)
     onb_text = driver.find_element(
@@ -133,7 +133,7 @@ def test_footer_sections(driver: WebDriver):
     check.is_in('Объявления по всей России', text)
 
 
-def test_feedback_popup(driver: WebDriver):
+def test_DELETE_feedback_popup(driver: WebDriver):
 
     button_loc = '//*[@alt="UX Feedback"]/..'
     form_loc = '//h2[text()="Насколько легко пользоваться нашим сайтом?"]/following-sibling::ul'

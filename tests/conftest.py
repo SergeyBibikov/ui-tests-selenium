@@ -3,21 +3,26 @@ from selenium import webdriver
 import pytest
 import os
 from constants import Urls
-import constants
+
 
 def get_driver():
+    isHeadless = os.environ.get("HEADLESS")
+    width = os.environ.get("WIDTH")
+    height = os.environ.get("HEIGHT")
+
     options = webdriver.ChromeOptions()
-    if os.environ.get("HEADLESS") == "1":
+    if isHeadless == "1":
         options.add_argument("--headless")
     options.add_experimental_option('excludeSwitches', ['enable-logging'])
     d = webdriver.Chrome(options=options)
-    d.implicitly_wait(5)
+    d.implicitly_wait(10)
     pform = platform.system()
-    if pform == 'Linux':
-        d.set_window_size("1366", "768")
+    if width and height:
+        d.set_window_size(width, height)
     else:
         d.set_window_size("1920", "1080")
     return d
+
 
 @pytest.fixture
 def driver():
@@ -26,12 +31,14 @@ def driver():
     yield d
     d.close()
 
+
 @pytest.fixture
 def driver_rent():
     d = get_driver()
     d.get(Urls.ROOM_RENT)
     yield d
     d.close()
+
 
 @pytest.fixture
 def driver_place_ad():
@@ -40,11 +47,13 @@ def driver_place_ad():
     yield d
     d.close()
 
+
 @pytest.fixture
 def driver_no_link():
     d = get_driver()
     yield d
     d.close()
+
 
 @pytest.fixture
 def driver_agents_list():
@@ -52,6 +61,7 @@ def driver_agents_list():
     d.get(Urls.AGENTS_LIST)
     yield d
     d.close()
+
 
 @pytest.fixture
 def driver_buy_flat_results():

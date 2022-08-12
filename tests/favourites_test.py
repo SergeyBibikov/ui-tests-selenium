@@ -24,7 +24,7 @@ SORT_OPTIONS = '[data-testid="sort_buttons"]'
 DELETE_ALL = '//span[text()="Удалить все"]'
 
 
-def test_popup_on_all_favs_deletion(driver_rent: WebDriver):
+def test_DELETE_popup_on_all_favs_deletion(driver_rent: WebDriver):
     d = driver_rent
 
     SearchResults.toggle_first_result_icon(d, CardIcons.FAVOURITES)
@@ -48,7 +48,7 @@ def test_sort_order_criteria(driver_no_link: WebDriver):
     w.wait_for_text(d, 20, By.CSS_SELECTOR, SORT_OPTIONS, "По цене")
 
 
-def test_action_buttons_on_the_ad_in_favs(driver_rent: WebDriver):
+def test_DELETE_action_buttons_on_the_ad_in_favs(driver_rent: WebDriver):
     d = driver_rent
 
     SearchResults.toggle_first_result_icon(d, CardIcons.FAVOURITES)
