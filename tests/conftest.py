@@ -25,6 +25,14 @@ def get_driver():
 
 
 @pytest.fixture
+def avito():
+    d = get_driver()
+    d.get('https://www.avito.ru/')
+    yield d
+    d.close()
+
+
+@pytest.fixture
 def driver():
     d = get_driver()
     d.get(Urls.MAIN_PAGE)

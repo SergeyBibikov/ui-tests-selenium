@@ -51,16 +51,6 @@ def test_popular_ads_rent_tabs(driver: WebDriver):
     check.is_in('Посуточно', pop_text)
 
 
-def test_DELETE_compare_promo_popup(driver: WebDriver):
-    loc = '[data-name="CompareOnboarding"]'
-    eh.check_element_is_present(driver, loc)
-    onb_text = driver.find_element(
-        By.CSS_SELECTOR, loc).get_attribute('textContent')
-    assert 'Сравнивайте квартиры по параметрам' in onb_text
-    assert 'Пока это работает только с квартирами от' in onb_text
-    assert 'застройщиков' in onb_text
-
-
 def test_cookies_notification_hides_on_confirmation(driver: WebDriver):
     elements = driver.find_elements(
         By.CSS_SELECTOR, Base.coookies_notification)

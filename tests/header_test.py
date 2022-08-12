@@ -87,24 +87,6 @@ def test_go_to_compare(driver: WebDriver):
     eh.check_element_is_present(driver, FLAT_SEARCH_BUTTON, By.XPATH)
 
 
-def test_DELETE_empty_favourites_card_text(driver: WebDriver):
-
-    eh.check_element_is_not_present(
-        driver, Header.favsCard, By.XPATH)
-
-    header = Header(driver)
-    header.favourites.click()
-    eh.check_element_is_present(driver, EMPTY_RESULTS)
-
-    card = driver.find_element(By.CSS_SELECTOR, EMPTY_RESULTS)
-    text = card.get_attribute('textContent')
-    check.is_in('Добавляйте', text)
-    check.is_in('объявления в избранное', text)
-
-    driver.find_element(By.XPATH, RESIDENTIAL_HOMES).click()
-    eh.check_element_is_present(driver, SAVE_INTERESTING_RES_HOMES, By.XPATH)
-
-
 def test_empty_notifications_card(driver: WebDriver):
 
     n_card = Header.notificationsCard["root"]

@@ -29,18 +29,6 @@ def test_housing_community_add_village_button(driver_no_link: WebDriver):
     eh.check_element_is_present(d, ADD_VILLAGE_BUTTON, By.XPATH)
 
 
-def test_DELETE_link_to_villages_list(driver: WebDriver):
-    d = driver
-
-    header_link = driver.find_element(By.XPATH, Header.houses_and_land)
-
-    a.hover(d, header_link)
-
-    driver.find_element(By.XPATH, LAND_SELL_LINK).click()
-
-    eh.check_element_is_present(driver, VILLAGE_LIST_LINK, By.XPATH)
-
-
 def test_STABILIZE_house_rent_additional_filters(driver: WebDriver):
     d = driver
 
