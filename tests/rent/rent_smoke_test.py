@@ -49,18 +49,3 @@ def test_sort_order_filter(driver_rent: WebDriver):
     check.is_in('По улице', text)
     check.is_in('По дате добавления (сначала новые)', text)
     check.is_in('По дате добавления (сначала старые)', text)
-
-
-def test_DELETE_ad_contacts_buttons(driver_rent: WebDriver):
-    d = driver_rent
-    d.implicitly_wait(10)
-
-    Base.close_cookies_notification(d)
-    header = Header(driver_rent)
-    SearchResults.click_first_result(driver_rent)
-    a.switchToNthTab(d, 2)
-    els = d.find_elements(
-        By.XPATH, '//button[span[text()="Показать телефон"]]')
-    check.equal(len(els), 2)
-    eh.check_element_is_present(
-        d, '//button[span[text()="Написать"]]', By.XPATH)

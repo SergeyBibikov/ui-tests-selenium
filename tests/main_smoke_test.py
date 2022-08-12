@@ -123,19 +123,6 @@ def test_footer_sections(driver: WebDriver):
     check.is_in('Объявления по всей России', text)
 
 
-def test_DELETE_feedback_popup(driver: WebDriver):
-
-    button_loc = '//*[@alt="UX Feedback"]/..'
-    form_loc = '//h2[text()="Насколько легко пользоваться нашим сайтом?"]/following-sibling::ul'
-
-    Base.close_cookies_notification(driver)
-
-    eh.check_element_is_not_present(driver, form_loc, By.XPATH)
-    driver.find_element(By.XPATH, button_loc).click()
-
-    eh.check_element_is_present(driver, form_loc, By.XPATH)
-
-
 def test_agent_help_page_lead_from_main(driver: WebDriver):
     driver.find_element(
         By.CSS_SELECTOR, '[data-name="FinanceMainPage"]').click()
