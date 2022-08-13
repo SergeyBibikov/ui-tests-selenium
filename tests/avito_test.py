@@ -100,11 +100,13 @@ def test_search_radius_determines_ads_number(avito: WebDriver):
     radius_items = d.find_elements(By.CSS_SELECTOR, l.RADIUS_LIST_ITEMS)
 
     radius_items[0].click()
+    time.sleep(0.1)
     button_text1 = d.find_element(
         By.CSS_SELECTOR, l.SHOW_ADS_BUTTON
     ).get_attribute('textContent')
 
     radius_items[1].click()
+    time.sleep(0.1)
     button_text2 = d.find_element(
         By.CSS_SELECTOR, l.SHOW_ADS_BUTTON
     ).get_attribute('textContent')
