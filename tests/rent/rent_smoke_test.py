@@ -23,13 +23,13 @@ def test_recommend_block_categories(driver_rent: WebDriver):
         By.CSS_SELECTOR, QUICK_LINKS).get_attribute('textContent')
 
     check.is_in('без посредников', text)
-    check.is_in('холодильник', text)
-    check.is_in('с мебелью', text)
-    check.is_in('стиральная машина', text)
-    check.is_in('изолированные комнаты', text)
-    check.is_in('на длительный срок', text)
-    check.is_in('без залога', text)
-    check.is_in('рядом с метро', text)
+    # check.is_in('холодильник', text)
+    # check.is_in('с мебелью', text)
+    # check.is_in('стиральная машина', text)
+    # check.is_in('изолированные комнаты', text)
+    # check.is_in('на длительный срок', text)
+    # check.is_in('без залога', text)
+    # check.is_in('рядом с метро', text)
 
 
 def test_sort_order_filter(driver_rent: WebDriver):
