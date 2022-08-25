@@ -11,7 +11,7 @@ class Locators():
     PAGE_TITLE = '[data-marker="page-title"]'
     SEARCH_BAR = '[data-marker="search-form/suggest"]'
     SEARCH_BUTTON = '[data-marker="search-form/submit-button"]'
-    SEARCH_PARAMETERS = 'div[class*="form-part-additions"]'
+    SEARCH_PARAMETERS = 'div[class*="filters-subscription-additions"]'
     SEARCH_KINDS_LIST = 'div[class*="top-rubricator-root"]'
     SEARCH_RADIUS = '[data-marker="search-form/radius"]'
     SERVICES_LIST = '//h3[text()="Сервисы и услуги Авито"]/..'
