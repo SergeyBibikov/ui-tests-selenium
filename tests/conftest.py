@@ -7,8 +7,7 @@ from constants import Urls
 
 def get_driver():
     isHeadless = os.environ.get("HEADLESS")
-    width = os.environ.get("WIDTH")
-    height = os.environ.get("HEIGHT")
+    isLaptop = os.environ.get("LAPTOP")
 
     options = webdriver.ChromeOptions()
     if isHeadless == "1":
@@ -17,8 +16,8 @@ def get_driver():
     d = webdriver.Chrome(options=options)
     d.implicitly_wait(10)
     pform = platform.system()
-    if width and height:
-        d.set_window_size(width, height)
+    if isLaptop:
+        d.set_window_size("1366", "768")
     else:
         d.set_window_size("1920", "1080")
     return d
