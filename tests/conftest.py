@@ -32,6 +32,14 @@ def avito():
 
 
 @pytest.fixture
+def ostrovok():
+    d = get_driver()
+    d.get('https://ostrovok.ru/')
+    yield d
+    d.close()
+
+
+@pytest.fixture
 def driver():
     d = get_driver()
     d.get(Urls.MAIN_PAGE)

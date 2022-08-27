@@ -112,18 +112,3 @@ def test_search_radius_determines_ads_number(avito: WebDriver):
     ).get_attribute('textContent')
 
     check_not_equal(button_text1, button_text2)
-
-
-def test_search_works_in_general(avito: WebDriver):
-    d = avito
-
-    search_item = 'iphone'
-
-    d.find_element(By.CSS_SELECTOR, l.SEARCH_BAR).send_keys(search_item)
-    d.find_element(By.CSS_SELECTOR, l.SEARCH_BUTTON).click()
-
-    text = d.find_element(
-        By.CSS_SELECTOR, l.PAGE_TITLE).get_attribute('textContent')
-    check_text('Объявления по', text)
-    check_text('запросу', text)
-    check_text(f'«{search_item}» в', text)
