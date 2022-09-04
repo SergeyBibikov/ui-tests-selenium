@@ -3,7 +3,6 @@ from selenium.webdriver.common.by import By
 
 import helpers.elements as eh
 import helpers.waits as w
-import constants
 from constants import Urls
 
 
@@ -27,7 +26,7 @@ def test_survey_already_taken(driver_no_link: WebDriver):
         By.XPATH, '//button[text()="Я уже заполнял анкету"]').click()
 
     w.wait_for_text(d, 30, By.CSS_SELECTOR, 'body',
-                    'Льготная ипотека от 6 банков')
+                    'Льготная ипотека от 5 банков')
     w.wait_for_text(d, 30, By.CSS_SELECTOR, 'body',
                     'Укажите номер телефона, чтобы продолжить')
 
