@@ -1,12 +1,8 @@
-import time
-
 import pytest_check as check
 
 from selenium.webdriver.chrome.webdriver import WebDriver
-from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.common.by import By
 
-from pageobjects.searchblock import SearchBlock
 from pageobjects.searchresults import SearchResults, CardIcons
 
 import helpers.elements as eh
