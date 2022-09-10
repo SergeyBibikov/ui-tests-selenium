@@ -11,6 +11,7 @@ import helpers.elements as eh
 
 """ TESTS OF VARIOUS DROPDOWNS IN THE SEARCH FILTERS BLOCK """
 
+
 def test_buy_possible_estate_choices(driver: WebDriver):
 
     search = SearchBlock(driver)
@@ -67,8 +68,8 @@ def test_24_hour_rent(driver: WebDriver):
 
 
 def test_estimate_estate_kinds(driver: WebDriver):
-    filterButton = '[data-testId="undefined_control"]'
-    filterDropdown = '[data-testId="undefined_dropdown"]'
+    filterButton = '[data-testId="estimation_target_control"]'
+    filterDropdown = '[data-testId="estimation_target_dropdown"]'
 
     search = SearchBlock(driver)
     search.choose_kind('Оценить')
@@ -78,7 +79,7 @@ def test_estimate_estate_kinds(driver: WebDriver):
 
     text = driver.find_element(
         By.CSS_SELECTOR, filterDropdown).get_attribute('textContent')
-    check.is_in('Квартиру', text)
+    check.is_in('Квартира', text)
     check.is_in('ЖК', text)
 
 
@@ -88,7 +89,8 @@ def test_MORTGAGE_MAIN_estate_kinds(driver: WebDriver):
 
     search.choose_kind('Ипотека')
     eh.check_element_is_not_present(driver, SearchBlock.dropdown_loc)
-    driver.find_element(By.XPATH, SearchBlock.MORTGAGE_MAIN_filters["estate_kind"]).click()
+    driver.find_element(
+        By.XPATH, SearchBlock.MORTGAGE_MAIN_filters["estate_kind"]).click()
 
     text = driver.find_element(
         By.CSS_SELECTOR, SearchBlock.dropdown_loc).get_attribute("textContent")
@@ -119,7 +121,6 @@ def test_estate_agent_search(driver: WebDriver):
 
 
 def test_room_count_filter(driver: WebDriver):
-    
 
     search = SearchBlock(driver)
 
@@ -142,7 +143,6 @@ def test_room_count_filter(driver: WebDriver):
 
 
 def test_price_input_fields_presence(driver: WebDriver):
-    
 
     search = SearchBlock(driver)
 
@@ -155,12 +155,13 @@ def test_price_input_fields_presence(driver: WebDriver):
     eh.check_element_is_present(dropdown, 'input[placeholder="от"]')
     eh.check_element_is_present(dropdown, 'input[placeholder="до"]')
 
+
 def test_location_suggestion_popup_should_include_different_location_types(driver: WebDriver):
-    
 
     search = SearchBlock(driver)
     search.enter_location('Москва')
-    text = driver.find_element(By.CSS_SELECTOR, search.suggestion_popup_loc).get_attribute('textContent')
+    text = driver.find_element(
+        By.CSS_SELECTOR, search.suggestion_popup_loc).get_attribute('textContent')
     check.is_in('Адреса', text)
     check.is_in('Метро', text)
     check.is_in('Жилые комплексы', text)
