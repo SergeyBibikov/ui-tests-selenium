@@ -26,7 +26,7 @@ def test_survey_already_taken(driver_no_link: WebDriver):
         By.XPATH, '//button[text()="Я уже заполнял анкету"]').click()
 
     w.wait_for_text(d, 30, By.CSS_SELECTOR, 'body',
-                    'Льготная ипотека от 5 банков')
+                    'Льготная ипотека от 8 банков')
     w.wait_for_text(d, 30, By.CSS_SELECTOR, 'body',
                     'Укажите номер телефона, чтобы продолжить')
 
@@ -39,8 +39,8 @@ def test_mortgage_with_state_support(driver_no_link: WebDriver):
     eh.check_element_is_present(
         d, '//a[text()="Узнать свои ставки"]', By.XPATH)
     w.wait_for_text(d, 30, By.CSS_SELECTOR, 'body', 'Ипотека с')
-    w.wait_for_text(d, 30, By.CSS_SELECTOR, 'body', 'господдержкой — все')
-    w.wait_for_text(d, 30, By.CSS_SELECTOR, 'body', 'программы')
+    w.wait_for_text(d, 30, By.CSS_SELECTOR, 'body', 'господдержкой для всех')
+    w.wait_for_text(d, 30, By.CSS_SELECTOR, 'body', 'граждан РФ')
     w.wait_for_text(d, 30, By.CSS_SELECTOR, 'body',
                     'Какие есть программы господдержки')
     w.wait_for_text(d, 30, By.CSS_SELECTOR, 'body',
