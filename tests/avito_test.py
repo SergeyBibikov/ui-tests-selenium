@@ -27,18 +27,24 @@ def test_services_list_includes_three_points(avito: WebDriver):
     check_text('Онлайн-бронирование жилья', text)
 
 
-def test_search_kinds_options(avito: WebDriver):
+def test_header_has_business_button(avito: WebDriver):
     d = avito
 
     confirm_location(d)
 
     text = d.find_element(
-        By.CSS_SELECTOR, l.SEARCH_KINDS_LIST).get_attribute('textContent')
-    check_text('Авто', text)
-    check_text('Недвижимость', text)
-    check_text('Работа', text)
-    check_text('Услуги', text)
-    check_text('ещё', text)
+        By.CSS_SELECTOR, l.HEADER).get_attribute('textContent')
+    check_text('Для бизнеса', text)
+
+
+def test_header_has_help_button(avito: WebDriver):
+    d = avito
+
+    confirm_location(d)
+
+    text = d.find_element(
+        By.CSS_SELECTOR, l.HEADER).get_attribute('textContent')
+    check_text('Помощь', text)
 
 
 def test_categories_of_the_more_option(avito: WebDriver):
