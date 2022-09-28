@@ -1,19 +1,9 @@
-import time
-
-import allure
-import pytest_check as check
-
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.webdriver import WebDriver
 
-from pageobjects.searchblock import SearchBlock
-from pageobjects.header import Header
-import helpers.waits as w
-import helpers.actions as a
 import helpers.elements as eh
 
 from constants import Urls
-from constants import CommonElements
 
 ADD_VILLAGE_BUTTON = '//button[span[text()="Добавить посёлок"]]'
 LAND_SELL_LINK = '//a[text()="Продажа участков"]'
