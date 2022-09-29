@@ -2,8 +2,6 @@ from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.common.by import By
 
 import helpers.elements as eh
-import helpers.waits as w
-import helpers.actions as a
 from helpers.checks import check_text, check_length, check_not_equal
 
 import time
