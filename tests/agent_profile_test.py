@@ -6,12 +6,8 @@ from selenium.webdriver.common.by import By
 
 import pytest_check as check
 
-from pageobjects.header import Header
-from pageobjects.base import Base
-from pageobjects.searchresults import SearchResults
 import helpers.elements as eh
 import helpers.waits as w
-import helpers.actions as actions
 
 AGENT_PAGE = 'https://www.cian.ru/agents/6954508/'
 AGENT_WITH_CONTACT_FORM = 'https://www.cian.ru/agents/21866732/'
