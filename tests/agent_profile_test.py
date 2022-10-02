@@ -1,4 +1,3 @@
-import time
 from constants import CommonElements
 
 from selenium.webdriver.chrome.webdriver import WebDriver
