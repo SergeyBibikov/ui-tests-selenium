@@ -2,7 +2,6 @@ from pageobjects.header import Header
 from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
-from selenium.webdriver.common.action_chains import ActionChains
 
 import helpers.elements as eh
 import helpers.waits as w
