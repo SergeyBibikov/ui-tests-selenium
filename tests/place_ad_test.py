@@ -1,13 +1,8 @@
-import time
-
 from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.common.by import By
 
 import pytest_check as check
 
-from pageobjects.header import Header
-from pageobjects.base import Base
-import helpers.scripts as s
 import helpers.elements as eh
 import helpers.waits as w
 
