@@ -4,11 +4,7 @@ from selenium.webdriver.common.by import By
 import helpers.elements as eh
 import helpers.waits as w
 import helpers.actions as a
-from helpers.checks import check_text, check_length, check_not_equal
-
-import time
-
-from pageobjects.avito import Locators as l, confirm_location
+from helpers.checks import check_text
 
 BUSINESS_TRIPS_TAB = '//a[text()="For business trips"]'
 DESTINATION_DROPDOWN = '//div[contains(@class, "Popup-module") and div[text()="Regions"]]'
