@@ -1,17 +1,14 @@
 from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.remote.webelement import WebElement
 import helpers.elements as eh
 import helpers.waits as w
 import helpers.actions as a
 
-import pytest
 import pytest_check as check
 
 from pageobjects.geoswitcher import GeoSwitcher
 from pageobjects.searchblock import SearchBlock
 from pageobjects.base import Base
-import time
 
 import pytest_check as check
 
