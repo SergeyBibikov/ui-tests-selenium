@@ -5,7 +5,7 @@ import helpers.elements as eh
 
 from constants import Urls
 
-ADD_VILLAGE_BUTTON = '//button[span[text()="Добавить посёлок"]]'
+ADD_VILLAGE_BUTTON = '//button[span[text()="Добавить посёлок в каталог"]]'
 LAND_SELL_LINK = '//a[text()="Продажа участков"]'
 RENT_HOUSE_LINK = '//a[text()="Аренда домов"]'
 VILLAGE_LIST_LINK = '//a[text()="в посёлках "]'
