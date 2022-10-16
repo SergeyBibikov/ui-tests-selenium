@@ -24,11 +24,12 @@ CREATE_ACCOUNT = '//form//button[span[text()="Создать аккаунт"]]'
 FORGOT_PASSWORD = '//a[text()="Забыли пароль?"]'
 AUTH_MODAL = CommonElements.AUTH_MODAL
 icons = {
-    "MAIL_RU":"//button[@title='Почта Mail.Ru']",
-    "VK":"//button[@title='ВКонтакте']",
-    "APPLE_ID":"//button[@title='Apple ID']",
-    "MORE":"//button[@title='Показать ещё']"
+    "MAIL_RU": "//button[@title='Почта Mail.Ru']",
+    "VK": "//button[@title='ВКонтакте']",
+    "APPLE_ID": "//button[@title='Apple ID']",
+    "MORE": "//button[@title='Показать ещё']"
 }
+
 
 def test_phone_field_red_border_on_empty_phone(driver: WebDriver):
     expected_initial_border = '1px solid rgb(206, 209, 215)'
@@ -44,16 +45,17 @@ def test_phone_field_red_border_on_empty_phone(driver: WebDriver):
 
     driver.find_element(By.XPATH, GET_CODE).click()
 
-    time.sleep(1) #Letting the style to change
+    time.sleep(1)  # Letting the style to change
 
     border = s.get_element_style_property(driver, phone_input, 'border')
     check.equal(border, expected_border_after_validation)
+
 
 def test_other_sign_in_methods_icons(driver: WebDriver):
 
     header = Header(driver)
     header.sign_in_button.click()
-    
+
     driver.find_element(By.XPATH, DIFFERENT_METHOD).click()
 
     eh.check_element_is_present(driver, SIGN_IN_WITH_PHONE, By.XPATH)
@@ -62,8 +64,8 @@ def test_other_sign_in_methods_icons(driver: WebDriver):
     eh.check_element_is_present(driver, icons['APPLE_ID'], By.XPATH)
     eh.check_element_is_present(driver, icons['MORE'], By.XPATH)
 
-def test_need_help_form_lead(driver: WebDriver):
 
+def test_need_help_form_lead(driver: WebDriver):
     header = Header(driver)
     header.sign_in_button.click()
     Base.close_cookies_notification(driver)
@@ -72,21 +74,23 @@ def test_need_help_form_lead(driver: WebDriver):
     a.switchToNthTab(driver, 2)
 
     check.is_in("contacts", driver.current_url)
-    eh.check_element_is_present(driver, '//span[text()="Напишите нам"]', By.XPATH)
-    eh.check_element_is_present(driver, '//button[span[text()="Отправить"]]', By.XPATH)
-    eh.check_element_is_present(driver, '//a[span[text()="Закрыть"]]', By.XPATH)
+    eh.check_element_is_present(
+        driver, '//span[text()="Напишите нам"]', By.XPATH)
+    eh.check_element_is_present(
+        driver, '//span[text()="Тема"]', By.XPATH)
+
 
 def test_forgot_password(driver: WebDriver):
     header = Header(driver)
     header.sign_in_button.click()
-    
+
     driver.find_element(By.XPATH, DIFFERENT_METHOD).click()
     driver.find_element(By.CSS_SELECTOR, EMAIL_ID_INPUT).send_keys("1")
     driver.find_element(By.XPATH, CONTINUE).click()
     driver.find_element(By.XPATH, FORGOT_PASSWORD).click()
-    w.wait_for_text(driver, 30, By.CSS_SELECTOR, AUTH_MODAL, 
-        'Восстановление пароля')
     w.wait_for_text(driver, 30, By.CSS_SELECTOR, AUTH_MODAL,
-        'Введите email, который вы указали при регистрации')
+                    'Восстановление пароля')
+    w.wait_for_text(driver, 30, By.CSS_SELECTOR, AUTH_MODAL,
+                    'Введите email, который вы указали при регистрации')
     eh.check_element_is_present(driver, CONTINUE, By.XPATH)
     eh.check_element_is_present(driver, CREATE_ACCOUNT, By.XPATH)
