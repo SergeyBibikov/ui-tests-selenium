@@ -118,12 +118,3 @@ def test_footer_sections(driver: WebDriver):
     check.is_in('Квартиры в районе', text)
     check.is_in('Недвижимость в Подмосковье', text)
     check.is_in('Объявления по всей России', text)
-
-
-def test_agent_help_page_lead_from_main(driver: WebDriver):
-    driver.find_element(
-        By.CSS_SELECTOR, '[data-name="FinanceMainPage"]').click()
-    a.switchToNthTab(driver, 2)
-    w.wait_for_text(driver, 30, By.CSS_SELECTOR, 'body', 'Заявка риелтору')
-    w.wait_for_text(driver, 30, By.CSS_SELECTOR, 'body',
-                    'Укажите ваш номер мобильного телефона')
