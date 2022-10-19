@@ -21,11 +21,11 @@ def test_title_content(driver: WebDriver):
 
 def test_main_page_sections(driver: WebDriver):
     eh.check_element_is_present(
-        driver, '//*[text()="Рекомендованные ЖК"]', By.XPATH)
+        driver, '//*[text()="Акции и скидки на новостройки"]', By.XPATH)
     eh.check_element_is_present(
         driver, '//*[text()="Полезные ссылки"]', By.XPATH)
     eh.check_element_is_present(
-        driver, '//*[text()="Популярные объявления"]', By.XPATH)
+        driver, '//*[text()="Специалисты"]', By.XPATH)
     eh.check_element_is_present(driver, '//*[text()="Журнал"]', By.XPATH)
 
 
