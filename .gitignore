@@ -1,4 +1,5 @@
 env
+venvSelenium
 pyvenv.cfg
 .pytest_cache
 output
