@@ -77,7 +77,7 @@ def test_ad_search_parameters_checkboxes(avito: WebDriver):
     text = params.get_attribute('textContent')
     check_text('только в названиях', text)
     check_text('только с фото', text)
-    check_text('сначала из Москвы', text)
+    check_text('сначала из ', text)
 
 
 def test_search_suggestions_dropdown(avito: WebDriver):
