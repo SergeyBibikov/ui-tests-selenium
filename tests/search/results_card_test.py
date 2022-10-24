@@ -51,7 +51,7 @@ def test_popup_when_ad_is_added_to_comparison(driver_buy_flat_results: WebDriver
         By.CSS_SELECTOR, COMPARISON_NOTIFICATION).get_attribute('textContent')
 
     check.is_in('Вы сравниваете 1 квартиру', text)
-    check.is_in('Можно добавить ещё 19', text)
+    check.is_in('можно добавить ещё 19', text)
 
 
 def test_popup_when_ad_is_removed_from_comparison(driver_buy_flat_results: WebDriver):
